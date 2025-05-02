@@ -1,0 +1,112 @@
+@import "../variables";
+@import "../mixins";
+
+// Grid of resources...
+.resource-cards {
+  @include auto-grid(24rem, 4rem, $max-cols: 3);
+
+  margin: 3rem 0;
+  padding: 0;
+}
+
+// A single resource 'card'
+.resource-card {
+  @include card();
+
+  display: grid;
+  grid-template-rows: 12rem 1.25fr;
+  height: 100%;
+
+  .resource-img {
+    overflow: hidden;
+    img {
+      border-top-left-radius: var(--card-border-radius);
+      border-top-right-radius: var(--card-border-radius);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .resource-info {
+    padding: $space-lg;
+    display: grid;
+    align-content: start;
+    grid-template-columns: auto min-content;
+    .resource-card-header {
+      font-size: var(--font-size-xl);
+      line-height: 2rem; // larger than spec
+      font-family: var(--font-family-headings);
+      font-weight: var(--font-weight-bolder);
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    .resource-icon {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: var(--font-size-title);
+      line-height: 2rem;
+      justify-self: end;
+    }
+    p {
+      grid-area: 2 / 1 / 2 / 3;
+      // FIXME: line height?
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .links {
+      grid-area: 3 / 1 / 3 / 3;
+      margin-top: auto;
+      align-self: start;
+      justify-self: start;
+
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: $space-md;
+      row-gap: $space-md;
+    }
+  }
+
+  @media (min-width: $breakpoint-laptop) {
+    .resource-info {
+      padding: 2 * $space-lg;
+    }
+  }
+}
+
+// On narrow widths, turn resource cards into
+// a single-line list
+//@media (max-width: $breakpoint-phone) {
+//  .resource-cards {
+//    margin: 0;
+//    grid-gap: 2px;
+//
+//    .resource-card {
+//      height: min-content;
+//      grid-template-rows: unset;
+//      border-radius: 0;
+//      .resource-img {
+//        display: none;
+//      }
+//      .resource-info {
+//        width: max-content;
+//        p {
+//          display: none;
+//        }
+//        .button-primary {
+//          display: none;
+//        }
+//      }
+//    }
+//    .resource-card:first-child {
+//      border-top-right-radius: var(--card-border-radius);
+//      border-top-left-radius: var(--card-border-radius);
+//    }
+//    .resource-card:last-child {
+//      border-bottom-left-radius: var(--card-border-radius);
+//      border-bottom-right-radius: var(--card-border-radius);
+//    }
+//  }
+//}

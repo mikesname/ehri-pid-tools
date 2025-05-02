@@ -1,0 +1,60 @@
+@(title: String, extraHead: Html = Html(""), extraFoot: Html = Html(""))(content: Html)(implicit request: RequestHeader, messages: Messages)
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/style.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+    @extraHead
+
+  </head>
+  <body>
+    <header class="main header">
+      <div class="banner">
+        <div class="logo">
+          <a href="@routes.HomeController.index()">
+            <img src="@routes.Assets.versioned("images/ehri-logo-sm.svg")" alt="EHRI logo">
+          </a>
+        </div>
+      </div>
+      <nav class="nav main-navbar navbar-container" role="navigation">
+        <label for="hamburger-toggle">Show menu</label>
+        <input id="hamburger-toggle" class="hamburger-toggle" type="checkbox"/>
+        <span class="hamburger-part"></span>
+        <span class="hamburger-part"></span>
+        <span class="hamburger-part"></span>
+
+        <div class="navbar">
+          <ul class="text-item header-menu">
+            <li class="header-menu-item">
+              <a class="btn" href="@routes.HomeController.index()">Home</a>
+            </li>
+            <li class="header-menu-item">
+              <a class="btn" href="@routes.HomeController.versioning()">Versioning</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="container">
+
+      <section class="page-content">
+        @content
+      </section>
+    </main>
+
+    <footer class="main footer">
+      <div class="container">
+        <div class="copyright">
+          © @java.time.Year.now.getValue EHRI-ERIC.
+        </div>
+      </div>
+    </footer>
+    @extraFoot
+  </body>
+</html>

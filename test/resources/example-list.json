@@ -1,0 +1,2291 @@
+{
+  "data": [
+    {
+      "id": "10.83354/1yx8-pgcn",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/1yx8-pgcn",
+        "identifiers": [
+          {
+            "identifier": "7672",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "doi-test-post-1-english",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": [
+              {
+                "nameIdentifier": "0000-0003-1234-1234",
+                "nameIdentifierScheme": "ORCID"
+              }
+            ]
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "DOI Test Post 1 [English]"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-04-04",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-04-09",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [
+          {
+            "relationType": "HasTranslation",
+            "relatedIdentifier": "10.83354/aep8-qxh0",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI"
+          }
+        ],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "This is a DOI test post. It is written in English but has a Dutch translation, linked with the Polylang plugin. This is more text to make the introduction / excerpt a bit longer and more representative. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah Read More"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/1yx8-pgcn",
+        "contentUrl": null,
+        "metadataVersion": 4,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-04T13:04:40Z",
+        "registered": "2025-04-04T13:14:50Z",
+        "published": null,
+        "updated": "2025-04-28T15:47:48Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/ckee-qacb",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/ckee-qacb",
+        "identifiers": [
+          {
+            "identifier": "7548",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "unraveling-sabotage-socks",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Victoria Martinez",
+            "givenName": "Victoria",
+            "familyName": "Martinez",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Britta Geschwind",
+            "givenName": "Britta",
+            "familyName": "Geschwind",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Unraveling “Sabotage Socks”: The Materiality of Nazi Concentration Camps in Sweden"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-01-27",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-01-27",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "There’s a hole in one of the socks near where the toes should be. Is that where an elderly female prisoner deliberately knitted a defect? Is it traces of use? Or is it just because the socks were knitted eighty years ago? Other than the hole, the socks have held up well. They are a little dirty, perhaps, but that’s understandable considering what they went through to get here. Knitted in a Nazi concentration camp in the early 1940s, smuggled out of the camp by a prisoner liberated by the Red Cross in the spring of 1945, before the war <a class=\"read-more-link\" href=\"\">Read More</a>"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/ckee-qacb",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-09T06:45:16Z",
+        "registered": "2025-04-09T06:45:58Z",
+        "published": null,
+        "updated": "2025-04-09T06:45:58Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/fb4e-gq90",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/fb4e-gq90",
+        "identifiers": [
+          {
+            "identifier": "7548",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "unraveling-sabotage-socks",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Victoria Martinez",
+            "givenName": "Victoria",
+            "familyName": "Martinez",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Britta Geschwind",
+            "givenName": "Britta",
+            "familyName": "Geschwind",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Unraveling “Sabotage Socks”: The Materiality of Nazi Concentration Camps in Sweden"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-01-27",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-01-27",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "There’s a hole in one of the socks near where the toes should be. Is that where an elderly female prisoner deliberately knitted a defect? Is it traces of use? Or is it just because the socks were knitted eighty years ago? Other than the hole, the socks have held up well. They are a little dirty, perhaps, but that’s understandable considering what they went through to get here. Knitted in a Nazi concentration camp in the early 1940s, smuggled out of the camp by a prisoner liberated by the Red Cross in the spring of 1945, before the war <a class=\"read-more-link\" href=\"\">Read More</a>"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/fb4e-gq90",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-09T06:38:19Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-04-09T06:38:19Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/6ary-ejg7",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/6ary-ejg7",
+        "identifiers": [
+          {
+            "identifier": "7548",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "unraveling-sabotage-socks",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Victoria Martinez",
+            "givenName": "Victoria",
+            "familyName": "Martinez",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Britta Geschwind",
+            "givenName": "Britta",
+            "familyName": "Geschwind",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Unraveling “Sabotage Socks”: The Materiality of Nazi Concentration Camps in Sweden"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-01-27",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-01-27",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "There’s a hole in one of the socks near where the toes should be. Is that where an elderly female prisoner deliberately knitted a defect? Is it traces of use? Or is it just because the socks were knitted eighty years ago? Other than the hole, the socks have held up well. They are a little dirty, perhaps, but that’s understandable considering what they went through to get here. Knitted in a Nazi concentration camp in the early 1940s, smuggled out of the camp by a prisoner liberated by the Red Cross in the spring of 1945, before the war <a class=\"read-more-link\" href=\"\">Read More</a>"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/6ary-ejg7",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-09T06:38:13Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-04-09T06:38:13Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/3uuu-geca",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/3uuu-geca",
+        "identifiers": [
+          {
+            "identifier": "7548",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "unraveling-sabotage-socks",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Victoria Martinez",
+            "givenName": "Victoria",
+            "familyName": "Martinez",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Britta Geschwind",
+            "givenName": "Britta",
+            "familyName": "Geschwind",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Unraveling “Sabotage Socks”: The Materiality of Nazi Concentration Camps in Sweden"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-01-27",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-01-27",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "There’s a hole in one of the socks near where the toes should be. Is that where an elderly female prisoner deliberately knitted a defect? Is it traces of use? Or is it just because the socks were knitted eighty years ago? Other than the hole, the socks have held up well. They are a little dirty, perhaps, but that’s understandable considering what they went through to get here. Knitted in a Nazi concentration camp in the early 1940s, smuggled out of the camp by a prisoner liberated by the Red Cross in the spring of 1945, before the war <a class=\"read-more-link\" href=\"\">Read More</a>"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/3uuu-geca",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-09T06:35:05Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-04-09T06:35:05Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/xqgd-ezt5",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/xqgd-ezt5",
+        "identifiers": [
+          {
+            "identifier": "7548",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "unraveling-sabotage-socks",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Victoria Martinez",
+            "givenName": "Victoria",
+            "familyName": "Martinez",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Britta Geschwind",
+            "givenName": "Britta",
+            "familyName": "Geschwind",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Unraveling “Sabotage Socks”: The Materiality of Nazi Concentration Camps in Sweden"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-01-27",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-01-27",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "There’s a hole in one of the socks near where the toes should be. Is that where an elderly female prisoner deliberately knitted a defect? Is it traces of use? Or is it just because the socks were knitted eighty years ago? Other than the hole, the socks have held up well. They are a little dirty, perhaps, but that’s understandable considering what they went through to get here. Knitted in a Nazi concentration camp in the early 1940s, smuggled out of the camp by a prisoner liberated by the Red Cross in the spring of 1945, before the war <a class=\"read-more-link\" href=\"\">Read More</a>"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/xqgd-ezt5",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-09T06:34:17Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-04-09T06:34:17Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/aep8-qxh0",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/aep8-qxh0",
+        "identifiers": [
+          {
+            "identifier": "7674",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "doi-test-post-1-dutch",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": [
+              {
+                "nameIdentifier": "0000-0003-0765-7390",
+                "nameIdentifierScheme": "ORCID"
+              }
+            ]
+          }
+        ],
+        "titles": [
+          {
+            "lang": "nl",
+            "title": "DOI Test Post 1 [Dutch] Updated"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-04-04",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-04-08",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [
+          {
+            "relationType": "HasTranslation",
+            "relatedIdentifier": "10.83354/1yx8-pgcn",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI"
+          }
+        ],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "nl",
+            "description": "This is a Dutch translation of DOI Test Post 1."
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/aep8-qxh0",
+        "contentUrl": null,
+        "metadataVersion": 3,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-04T13:07:31Z",
+        "registered": "2025-04-04T13:14:53Z",
+        "published": null,
+        "updated": "2025-04-08T10:29:51Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/1a3w-95g9",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/1a3w-95g9",
+        "identifiers": [
+          {
+            "identifier": "7655",
+            "identifierType": "Post ID"
+          },
+          {
+            "identifier": "another-doi-test-post",
+            "identifierType": "Slug"
+          }
+        ],
+        "creators": [
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": [
+              {
+                "nameIdentifier": "0000-0003-0765-7390",
+                "nameIdentifierScheme": "ORCID"
+              }
+            ]
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Another DOI test post"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-03-19",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-03-19",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [
+          {
+            "relationType": "HasTranslation",
+            "relatedIdentifier": "10.83354/1a3w-95g9",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI"
+          }
+        ],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "A DOI test post, in English."
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/1a3w-95g9",
+        "contentUrl": null,
+        "metadataVersion": 4,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-03T17:08:15Z",
+        "registered": "2025-04-03T17:08:43Z",
+        "published": null,
+        "updated": "2025-04-04T12:01:29Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/13y9-sa13",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/13y9-sa13",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Michala Lônčíková",
+            "givenName": "Michala",
+            "familyName": "Lônčíková",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Very Much a Test Post - with cleaned up title"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-03-17",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-04-03",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "This is an excerpt of my test post\n"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/dois/10.83354/13y9-sa13",
+        "contentUrl": null,
+        "metadataVersion": 5,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-21T16:05:26Z",
+        "registered": "2025-04-03T14:00:47Z",
+        "published": null,
+        "updated": "2025-04-03T14:01:18Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/wkrb-4gpm",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/wkrb-4gpm",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Michala Lônčíková",
+            "givenName": "Michala",
+            "familyName": "Lônčíková",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Very Much a Test Post - with updated title - AND AGAIN! <><><><>"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-03-17",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-03-26",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "This is an excerpt of my test post\n"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/doi/10.83354/wkrb-4gpm",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-01T10:39:28Z",
+        "registered": "2025-04-01T10:39:28Z",
+        "published": null,
+        "updated": "2025-04-01T10:39:28Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/s574-6ztj",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/s574-6ztj",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Michala Lônčíková",
+            "givenName": "Michala",
+            "familyName": "Lônčíková",
+            "affiliation": [],
+            "nameIdentifiers": []
+          },
+          {
+            "name": "Mike Bryant",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "lang": "en",
+            "title": "Very Much a Test Post - with updated title - AND AGAIN! <><><><>"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2025-03-17",
+            "dateType": "Created"
+          },
+          {
+            "date": "2025-03-26",
+            "dateType": "Updated"
+          }
+        ],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [
+          "text/html"
+        ],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [
+          {
+            "lang": "en",
+            "description": "This is an excerpt of my test post\n"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/doi/10.83354/s574-6ztj",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-04-01T10:35:53Z",
+        "registered": "2025-04-01T10:35:53Z",
+        "published": null,
+        "updated": "2025-04-01T10:35:53Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/evba-832n",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/evba-832n",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Mykhailiuk, Maryna",
+            "givenName": "Maryna",
+            "familyName": "Mykhailiuk",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Historiography of Babi Yar (1991-2023)"
+          }
+        ],
+        "publisher": "European Holocaust Research Infrastructure (EHRI)",
+        "container": {
+          "type": "Journal",
+          "title": "EHRI Document Blog",
+          "identifier": "https://blog.ehri-project.eu"
+        },
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": null,
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "http://pids.local/doi//10.83354/evba-832n",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-25T11:58:00Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-25T11:58:00Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/2emn-7b32",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/2emn-7b32",
+        "identifiers": [],
+        "creators": [],
+        "titles": [
+          {
+            "title": "Another Test Item"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-20T17:00:23Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-20T17:00:23Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/2m74-jz84",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/2m74-jz84",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "draft",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:52:55Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:52:55Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/2hh8-fm60",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/2hh8-fm60",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:31:19Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:31:19Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/8tkz-0n81",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/8tkz-0n81",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:29:49Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:29:49Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/t0fb-cd31",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/t0fb-cd31",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:28:20Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:28:20Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/1j4j-9c60",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/1j4j-9c60",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:27:51Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:27:51Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/91vb-hm58",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/91vb-hm58",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:23:37Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:23:37Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/3veh-jy82",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/3veh-jy82",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:19:20Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:19:20Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/vh8s-q530",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/vh8s-q530",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:17:42Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:17:42Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/v8hq-ss71",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/v8hq-ss71",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:16:46Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:16:46Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/zcx7-6c82",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/zcx7-6c82",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:16:07Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:16:07Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/k3pe-7346",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/k3pe-7346",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:14:24Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:14:24Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    },
+    {
+      "id": "10.83354/tqq0-cc88",
+      "type": "dois",
+      "attributes": {
+        "doi": "10.83354/tqq0-cc88",
+        "identifiers": [],
+        "creators": [
+          {
+            "name": "Bryant, Mike",
+            "givenName": "Mike",
+            "familyName": "Bryant",
+            "affiliation": [],
+            "nameIdentifiers": []
+          }
+        ],
+        "titles": [
+          {
+            "title": "Mike's First Test"
+          }
+        ],
+        "publisher": "EHRI",
+        "container": {},
+        "publicationYear": 2025,
+        "subjects": [],
+        "contributors": [],
+        "dates": [],
+        "language": null,
+        "types": {
+          "ris": "RPRT",
+          "bibtex": "article",
+          "citeproc": "article-journal",
+          "schemaOrg": "ScholarlyArticle",
+          "resourceType": "Blog Post",
+          "resourceTypeGeneral": "Text"
+        },
+        "relatedIdentifiers": [],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": "1.0.0",
+        "rightsList": [],
+        "descriptions": [],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "url": "https://blog.ehri-project.eu/",
+        "contentUrl": null,
+        "metadataVersion": 0,
+        "schemaVersion": null,
+        "source": "api",
+        "isActive": false,
+        "state": "registered",
+        "reason": null,
+        "viewCount": 0,
+        "downloadCount": 0,
+        "referenceCount": 0,
+        "citationCount": 0,
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 0,
+        "versionOfCount": 0,
+        "created": "2025-03-19T16:13:49Z",
+        "registered": null,
+        "published": null,
+        "updated": "2025-03-19T16:13:49Z"
+      },
+      "relationships": {
+        "client": {
+          "data": {
+            "id": "fcjc.bzkwat",
+            "type": "clients"
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "total": 29,
+    "totalPages": 2,
+    "page": 1,
+    "states": [
+      {
+        "id": "registered",
+        "title": "Registered",
+        "count": 16
+      },
+      {
+        "id": "findable",
+        "title": "Findable",
+        "count": 7
+      },
+      {
+        "id": "draft",
+        "title": "Draft",
+        "count": 6
+      }
+    ],
+    "resourceTypes": [
+      {
+        "id": "text",
+        "title": "Text",
+        "count": 29
+      }
+    ],
+    "created": [
+      {
+        "id": "2025",
+        "title": "2025",
+        "count": 29
+      }
+    ],
+    "published": [
+      {
+        "id": "2025",
+        "title": "2025",
+        "count": 29
+      }
+    ],
+    "registered": [
+      {
+        "id": "2025",
+        "title": "2025",
+        "count": 10
+      }
+    ],
+    "providers": [
+      {
+        "id": "fcjc",
+        "title": "European Holocaust Research Infrastructure (EHRI)",
+        "count": 29
+      }
+    ],
+    "clients": [
+      {
+        "id": "fcjc.bzkwat",
+        "title": "EHRI  Testing",
+        "count": 29
+      }
+    ],
+    "affiliations": [],
+    "prefixes": [
+      {
+        "id": "10.83354",
+        "title": "10.83354",
+        "count": 29
+      }
+    ],
+    "certificates": [],
+    "licenses": [],
+    "schemaVersions": [
+      {
+        "id": "4",
+        "title": "Schema 4",
+        "count": 6
+      }
+    ],
+    "linkChecksStatus": [],
+    "subjects": [],
+    "fieldsOfScience": [],
+    "citations": [],
+    "views": [],
+    "downloads": []
+  },
+  "links": {
+    "self": "https://api.test.datacite.org/dois?prefix=10.83354",
+    "next": "https://api.test.datacite.org/dois?page%5Bnumber%5D=2&page%5Bsize%5D=25&prefix=10.83354"
+  }
+}

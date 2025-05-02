@@ -1,0 +1,19 @@
+package services
+
+import com.google.inject.ImplementedBy
+import models.{Pid, PidType}
+
+import scala.concurrent.Future
+
+@ImplementedBy(classOf[SqlPidService])
+trait PidService {
+  def findAll(ptype: PidType.Value): Future[Seq[Pid]]
+
+  def findById(ptype: PidType.Value, value: String): Future[Option[Pid]]
+
+  def create(ptype: PidType.Value, value: String, target: String, client: String): Future[Pid]
+
+  def update(ptype: PidType.Value, value: String, target: String): Future[Pid]
+
+  def delete(ptype: PidType.Value, value: String): Future[Boolean]
+}

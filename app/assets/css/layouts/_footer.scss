@@ -1,0 +1,197 @@
+@import "../variables";
+
+/**
+ * Responsive footer.
+ */
+.footer.main {
+  margin-top: auto;
+  padding: var(--margin-page-v) var(--margin-page-h);
+
+  background-color: var(--theme-footer-bg);
+  color: var(--theme-footer-fg);
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-reg);
+  line-height: 24px;
+
+  a {
+    color: var(--theme-footer-fg-accent);
+  }
+}
+
+.footer-content {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-gap: 0 1rem;
+
+  // At mobile width, the grid is a single column
+  grid-template-areas:
+      "headings"
+      "menu1"
+      "menu2"
+      "menu3"
+      "social"
+      "partners"
+      "copyright";
+
+  // At tablet width, the grid changes to a 4-column layout
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-areas:
+        "headings menu1 menu2 social"
+        ". menu3 menu2 . "
+        "partners partners copyright copyright";
+    grid-gap: 0 4rem;
+  }
+
+  // At laptop width, the grid changes to a 5-column layout
+  @media (min-width: $breakpoint-laptop) {
+    grid-template-areas: "headings menu1 menu2 menu3 social" ". partners partners . ." ". . . copyright copyright";
+    grid-gap: 3rem 4rem;
+  }
+}
+
+.footer-headings {
+  display: flex;
+  grid-area: headings;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: block;
+  }
+
+  .title {
+    display: block;
+    width: max-content;
+    margin-left: $space-lg;
+    font-size: var(--font-size-lg);
+    white-space: break-spaces;
+    line-height: 2.125rem;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: min-content;
+      margin-left: 0;
+    }
+  }
+
+  .logo {
+    margin-bottom: $space-lg;
+
+    @media (min-width: $breakpoint-laptop) {
+      margin-bottom: 2 * $space-lg;
+    }
+  }
+
+  .logo img {
+    width: 69px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 117px;
+    }
+
+    @media (min-width: $breakpoint-laptop) {
+      width: unset;
+    }
+  }
+}
+
+// Styling that applies to all menus
+.footer-menu {
+  margin: 0;
+  padding: 0;
+
+  .footer-menu-item {
+    list-style: none;
+    padding: $space-md 0;
+    font-weight: var(--font-weight-bolder);
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: $space-lg 0;
+    }
+  }
+
+  > .footer-menu-item > .footer-submenu {
+    padding-left: $space-md;
+    margin-top: $space-sm;
+
+    > .footer-submenu-item {
+      font-weight: var(--font-weight-reg);
+      padding: $space-sm 0;
+
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-left: unset;
+    }
+  }
+}
+
+.footer-content .menu-1 {
+  grid-area: menu1;
+}
+
+.footer-content .menu-2 {
+  grid-area: menu2;
+}
+
+.footer-content .menu-3 {
+  grid-area: menu3;
+}
+
+.footer-menu .contact-card {
+  @media (min-width: $breakpoint-tablet) {
+    // FIXME: this was hidden in the design and makes things easier,
+    // but probably should not be hidden in the final version
+    display: none;
+  }
+
+  @media (min-width: $breakpoint-laptop) {
+    display: block;
+  }
+}
+
+.footer-content .social {
+  grid-area: social;
+  justify-self: start;
+  font-size: var(--font-size-base);
+  margin: $space-lg 0 $space-xl 0;
+
+  @media(min-width: $breakpoint-tablet) {
+    margin: 0;
+    justify-self: center;
+    padding-top: $space-lg;
+  }
+}
+
+.footer-content .partners {
+  grid-area: partners;
+  margin-bottom: $space-xl;
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  .partner-logos {
+    display: flex;
+    gap: $space-sm;
+  }
+
+  img {
+    height: 2rem;
+    width: auto;
+  }
+}
+
+.footer-copyright {
+  grid-area: copyright;
+  text-align: start;
+  align-self: end;
+  font-size: var(--font-size-sm);
+
+  @media (min-width: $breakpoint-tablet) {
+    text-align: end;
+  }
+}

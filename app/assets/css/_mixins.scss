@@ -1,0 +1,48 @@
+@mixin card() {
+  border-radius: var(--card-border-radius);
+  background: var(--theme-bg-accent-gradient);
+  box-sizing: border-box;
+}
+
+// Grid where each cell as a minimum size, below which the grid will
+// wrap to fewer columns
+@mixin auto-grid($min-size, $gap, $max-cols: "") {
+  --auto-grid-min-size: unset;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: $gap;
+  width: 100%;
+
+  @media (min-width: $breakpoint-tablet) {
+    @if ($max-cols != "") {
+      $auto-grid-min-size: "max(#{$min-size}, calc(100%/#{$max-cols}) - #{$gap})";
+      --auto-grid-min-size: #{$auto-grid-min-size};
+    } @else {
+      --auto-grid-min-size: #{$min-size};
+    }
+  }
+}
+
+@mixin content-nav-link() {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  margin-top: $space-sm;
+  font-family: var(--font-family-headings);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--theme-fg-accent);
+    text-decoration: underline;
+  }
+}
+
+@mixin button() {
+  border-radius: var(--input-border-radius);
+  border: 2px solid transparent;
+  padding: .75rem 1.25rem;
+  display: inline-block;
+  font-family: var(--font-family-headings);
+  font-weight: var(--font-weight-bold);
+  transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+}
+

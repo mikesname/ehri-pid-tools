@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: pid_db
+    environment:
+      POSTGRES_USER: pids
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: pids
+    command: -c "max_connections=200" -c "shared_buffers=256MB"
+    ports:
+      - "5430:5432"

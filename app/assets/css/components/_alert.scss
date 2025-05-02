@@ -1,0 +1,40 @@
+
+@import "../variables";
+@import "../mixins";
+
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    background-color: var(--theme-bg-accent);
+    border-radius: var(--border-radius);
+    font-size: $font-size-md;
+    line-height: 1.35rem;
+
+    .alert-icon {
+        font-size: $font-size-lg;
+        color: var(--theme-fg-accent);
+    }
+
+    .alert-text {
+        margin-right: auto;
+        font-size: $font-size-lg;
+        color: var(--theme-fg-accent);
+    }
+}
+
+.alert.alert-warning {
+    background-color: var(--theme-bg-warning);
+    color: var(--theme-fg-warning);
+}
+
+.alert.alert-error {
+    background-color: var(--theme-bg-error);
+    color: var(--theme-fg-error);
+}
+
+.alert.alert-success {
+    background-color: var(--theme-bg-success);
+    color: var(--theme-fg-success);
+}

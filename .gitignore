@@ -1,0 +1,15 @@
+logs
+target
+/.bsp
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+*.iml
+.g8
+
+conf/doi.conf
+conf/clients.conf
+dbdump*

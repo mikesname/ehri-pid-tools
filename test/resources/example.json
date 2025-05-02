@@ -1,0 +1,311 @@
+{
+  "data": {
+    "id": "10.14454/fxws-0523",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.14454/fxws-0523",
+      "prefix": "10.14454",
+      "suffix": "fxws-0523",
+      "identifiers": [],
+      "alternateIdentifiers": [],
+      "creators": [
+        {
+          "name": "DataCite Metadata Working Group",
+          "affiliation": [],
+          "nameIdentifiers": []
+        }
+      ],
+      "titles": [
+        {
+          "title": "DataCite Metadata Schema for the Publication and Citation of Research Data and Other Research Outputs v4.4"
+        }
+      ],
+      "publisher": "DataCite",
+      "container": {},
+      "publicationYear": 2021,
+      "subjects": [
+        {
+          "subject": "DataCite"
+        },
+        {
+          "subject": "Metadata"
+        },
+        {
+          "subject": "Research Data"
+        },
+        {
+          "subject": "Research Outputs"
+        }
+      ],
+      "contributors": [
+        {
+          "name": "de Smaele, Madeleine",
+          "givenName": "Madeleine",
+          "familyName": "de Smaele",
+          "affiliation": [
+            "Delft University of Technology"
+          ],
+          "contributorType": "ProjectLeader",
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0003-4149-8311",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Bernal Martínez, Isabel",
+          "givenName": "Isabel",
+          "familyName": "Bernal Martínez",
+          "affiliation": [
+            "Spanish National Research Council"
+          ],
+          "contributorType": "ProjectLeader",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Dasler, Robin",
+          "givenName": "Robin",
+          "familyName": "Dasler",
+          "affiliation": [
+            "DataCite"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0002-4695-7874",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Ashton, Jan",
+          "givenName": "Jan",
+          "familyName": "Ashton",
+          "affiliation": [
+            "British Library"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Roy, Sophie",
+          "givenName": "Sophie",
+          "familyName": "Roy",
+          "affiliation": [
+            "National Research Council Canada"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Fenner, Martin",
+          "givenName": "Martin",
+          "familyName": "Fenner",
+          "affiliation": [
+            "DataCite"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": [
+            {
+              "schemeUri": "https://orcid.org",
+              "nameIdentifier": "https://orcid.org/0000-0001-6528-2027",
+              "nameIdentifierScheme": "ORCID"
+            }
+          ]
+        },
+        {
+          "name": "Chiloane, Leo",
+          "givenName": "Leo",
+          "familyName": "Chiloane",
+          "affiliation": [
+            "South African Environmental Observation Network"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Burger, Marleen",
+          "givenName": "Marleen",
+          "familyName": "Burger",
+          "affiliation": [
+            "German National Library of Science and Technology"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Yahia, Mohamed",
+          "givenName": "Mohamed",
+          "familyName": "Yahia",
+          "affiliation": [
+            "Institut de l'Information Scientifique et Technique"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Zolly, Lisa",
+          "givenName": "Lisa",
+          "familyName": "Zolly",
+          "affiliation": [
+            "United States Geological Survey"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Habermann, Ted",
+          "givenName": "Ted",
+          "familyName": "Habermann",
+          "affiliation": [
+            "Metadata Game Changers"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Raugh, Anne",
+          "givenName": "Anne",
+          "familyName": "Raugh",
+          "affiliation": [
+            "University of Maryland, College Park"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Ilik, Violeta",
+          "givenName": "Violeta",
+          "familyName": "Ilik",
+          "affiliation": [
+            "Columbia University"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        },
+        {
+          "name": "Foulger, Samantha",
+          "givenName": "Samantha",
+          "familyName": "Foulger",
+          "affiliation": [
+            "Swiss Federal Institute of Technology in Zurich"
+          ],
+          "contributorType": "Editor",
+          "nameIdentifiers": []
+        }
+      ],
+      "dates": [
+        {
+          "date": "2021",
+          "dateType": "Issued"
+        }
+      ],
+      "language": null,
+      "types": {
+        "ris": "RPRT",
+        "bibtex": "article",
+        "citeproc": "article-journal",
+        "schemaOrg": "ScholarlyArticle",
+        "resourceType": "XSD code",
+        "resourceTypeGeneral": "Text"
+      },
+      "relatedIdentifiers": [
+        {
+            "relatedIdentifier": "10.21105/joss.03824",
+            "relatedIdentifierType": "DOI",
+            "relationType": "IsPreviousVersionOf",
+            "resourceTypeGeneral": "Text"
+        }
+      ],
+      "relatedItems": [],
+      "sizes": [],
+      "formats": [],
+      "version": "4.4",
+      "rightsList": [],
+      "descriptions": [
+        {
+            "description": "DataCite Metadata Schema for the Publication and Citation of Research Data and Other Research Outputs v4.4",
+            "descriptionType": "Abstract",
+            "lang": "en"
+        }
+      ],
+      "geoLocations": [],
+      "fundingReferences": [],
+      "xml": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuMTQ0NTQvRlhXUy0wNTIzPC9pZGVudGlmaWVyPgogIDxjcmVhdG9ycz4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+RGF0YUNpdGUgTWV0YWRhdGEgV29ya2luZyBHcm91cDwvY3JlYXRvck5hbWU+CiAgICA8L2NyZWF0b3I+CiAgPC9jcmVhdG9ycz4KICA8dGl0bGVzPgogICAgPHRpdGxlPkRhdGFDaXRlIE1ldGFkYXRhIFNjaGVtYSBmb3IgdGhlIFB1YmxpY2F0aW9uIGFuZCBDaXRhdGlvbiBvZiBSZXNlYXJjaCBEYXRhIGFuZCBPdGhlciBSZXNlYXJjaCBPdXRwdXRzIHY0LjQ8L3RpdGxlPgogIDwvdGl0bGVzPgogIDxwdWJsaXNoZXI+RGF0YUNpdGU8L3B1Ymxpc2hlcj4KICA8cHVibGljYXRpb25ZZWFyPjIwMjE8L3B1YmxpY2F0aW9uWWVhcj4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IlRleHQiPlhTRCBjb2RlPC9yZXNvdXJjZVR5cGU+CiAgPGNvbnRyaWJ1dG9ycz4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IlByb2plY3RMZWFkZXIiPgogICAgICA8Y29udHJpYnV0b3JOYW1lPmRlIFNtYWVsZSwgTWFkZWxlaW5lPC9jb250cmlidXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+TWFkZWxlaW5lPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPmRlIFNtYWVsZTwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZyI+MDAwMC0wMDAzLTQxNDktODMxMTwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMmUyYzdrMDkiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIj5EZWxmdCBVbml2ZXJzaXR5IG9mIFRlY2hub2xvZ3k8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IlByb2plY3RMZWFkZXIiPgogICAgICA8Y29udHJpYnV0b3JOYW1lPkJlcm5hbCBNYXJ0acyBbmV6LCBJc2FiZWw8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5Jc2FiZWw8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+QmVybmFsIE1hcnRpzIFuZXo8L2ZhbWlseU5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMmdmYzd0NzIiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIj5TcGFuaXNoIE5hdGlvbmFsIFJlc2VhcmNoIENvdW5jaWw8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+RGFzbGVyLCBSb2JpbjwvY29udHJpYnV0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPlJvYmluPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkRhc2xlcjwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZyI+MDAwMC0wMDAyLTQ2OTUtNzg3NDwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wNHd4bnNqODEiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIj5EYXRhQ2l0ZTwvYWZmaWxpYXRpb24+CiAgICA8L2NvbnRyaWJ1dG9yPgogICAgPGNvbnRyaWJ1dG9yIGNvbnRyaWJ1dG9yVHlwZT0iRWRpdG9yIj4KICAgICAgPGNvbnRyaWJ1dG9yTmFtZT5Bc2h0b24sIEphbjwvY29udHJpYnV0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkphbjwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Bc2h0b248L2ZhbWlseU5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wNWRoZThiNzEiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIj5Ccml0aXNoIExpYnJhcnk8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+Um95LCBTb3BoaWU8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5Tb3BoaWU8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+Um95PC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDRtdGUxazA2IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiI+TmF0aW9uYWwgUmVzZWFyY2ggQ291bmNpbCBDYW5hZGE8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+RmVubmVyLCBNYXJ0aW48L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5NYXJ0aW48L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+RmVubmVyPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnIj4wMDAwLTAwMDEtNjUyOC0yMDI3PC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzA0d3huc2o4MSIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiPkRhdGFDaXRlPC9hZmZpbGlhdGlvbj4KICAgIDwvY29udHJpYnV0b3I+CiAgICA8Y29udHJpYnV0b3IgY29udHJpYnV0b3JUeXBlPSJFZGl0b3IiPgogICAgICA8Y29udHJpYnV0b3JOYW1lPkNoaWxvYW5lLCBMZW88L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5MZW88L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+Q2hpbG9hbmU8L2ZhbWlseU5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbj5Tb3V0aCBBZnJpY2FuIEVudmlyb25tZW50YWwgT2JzZXJ2YXRpb24gTmV0d29yazwvYWZmaWxpYXRpb24+CiAgICA8L2NvbnRyaWJ1dG9yPgogICAgPGNvbnRyaWJ1dG9yIGNvbnRyaWJ1dG9yVHlwZT0iRWRpdG9yIj4KICAgICAgPGNvbnRyaWJ1dG9yTmFtZT5CdXJnZXIsIE1hcmxlZW48L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5NYXJsZWVuPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkJ1cmdlcjwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzA0YWo0YzE4MSIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiPkdlcm1hbiBOYXRpb25hbCBMaWJyYXJ5IG9mIFNjaWVuY2UgYW5kIFRlY2hub2xvZ3k8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+WWFoaWEsIE1vaGFtZWQ8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5Nb2hhbWVkPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPllhaGlhPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDJtbjB2dDU3IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiI+SW5zdGl0dXQgZGUgbCdJbmZvcm1hdGlvbiBTY2llbnRpZmlxdWUgZXQgVGVjaG5pcXVlPC9hZmZpbGlhdGlvbj4KICAgIDwvY29udHJpYnV0b3I+CiAgICA8Y29udHJpYnV0b3IgY29udHJpYnV0b3JUeXBlPSJFZGl0b3IiPgogICAgICA8Y29udHJpYnV0b3JOYW1lPlpvbGx5LCBMaXNhPC9jb250cmlidXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+TGlzYTwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5ab2xseTwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAzNWE2ODg2MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiPlVuaXRlZCBTdGF0ZXMgR2VvbG9naWNhbCBTdXJ2ZXk8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+SGFiZXJtYW5uLCBUZWQ8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5UZWQ8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+SGFiZXJtYW5uPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24+TWV0YWRhdGEgR2FtZSBDaGFuZ2VyczwvYWZmaWxpYXRpb24+CiAgICA8L2NvbnRyaWJ1dG9yPgogICAgPGNvbnRyaWJ1dG9yIGNvbnRyaWJ1dG9yVHlwZT0iRWRpdG9yIj4KICAgICAgPGNvbnRyaWJ1dG9yTmFtZT5SYXVnaCwgQW5uZTwvY29udHJpYnV0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkFubmU8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+UmF1Z2g8L2ZhbWlseU5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wNDdzMmMyNTgiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIj5Vbml2ZXJzaXR5IG9mIE1hcnlsYW5kLCBDb2xsZWdlIFBhcms8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+SWxpaywgVmlvbGV0YTwvY29udHJpYnV0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPlZpb2xldGE8L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+SWxpazwvZmFtaWx5TmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAwaGo4czE3MiIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiPkNvbHVtYmlhIFVuaXZlcnNpdHk8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWU+Rm91bGdlciwgU2FtYW50aGE8L2NvbnRyaWJ1dG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5TYW1hbnRoYTwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Gb3VsZ2VyPC9mYW1pbHlOYW1lPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDVhMjhydzU4IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiI+U3dpc3MgRmVkZXJhbCBJbnN0aXR1dGUgb2YgVGVjaG5vbG9neSBpbiBadXJpY2g8L2FmZmlsaWF0aW9uPgogICAgPC9jb250cmlidXRvcj4KICA8L2NvbnRyaWJ1dG9ycz4KICA8ZGF0ZXM+CiAgICA8ZGF0ZSBkYXRlVHlwZT0iSXNzdWVkIj4yMDIxPC9kYXRlPgogIDwvZGF0ZXM+CiAgPHZlcnNpb24+NC40PC92ZXJzaW9uPgo8L3Jlc291cmNlPg==",
+      "url": "https://schema.datacite.org/meta/kernel-4.4/",
+      "contentUrl": null,
+      "metadataVersion": 1,
+      "schemaVersion": "http://datacite.org/schema/kernel-4",
+      "source": "fabricaForm",
+      "isActive": true,
+      "state": "findable",
+      "reason": null,
+      "viewCount": 0,
+      "viewsOverTime": [],
+      "downloadCount": 0,
+      "downloadsOverTime": [],
+      "referenceCount": 0,
+      "citationCount": 1,
+      "citationsOverTime": [
+        {
+          "year": "2022",
+          "total": 1
+        }
+      ],
+      "partCount": 0,
+      "partOfCount": 0,
+      "versionCount": 0,
+      "versionOfCount": 0,
+      "created": "2021-03-30T10:19:45.000Z",
+      "registered": "2021-03-30T12:00:37.000Z",
+      "published": "2021",
+      "updated": "2021-03-30T12:00:37.000Z"
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "id": "datacite.datacite",
+          "type": "clients"
+        }
+      },
+      "provider": {
+        "data": {
+          "id": "datacite",
+          "type": "providers"
+        }
+      },
+      "media": {
+        "data": {
+          "id": "10.14454/fxws-0523",
+          "type": "media"
+        }
+      },
+      "references": {
+        "data": []
+      },
+      "citations": {
+        "data": [
+          {
+            "id": "10.21105/joss.03824",
+            "type": "dois"
+          }
+        ]
+      },
+      "parts": {
+        "data": []
+      },
+      "partOf": {
+        "data": []
+      },
+      "versions": {
+        "data": []
+      },
+      "versionOf": {
+        "data": []
+      }
+    }
+  }
+}

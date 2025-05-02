@@ -1,0 +1,366 @@
+@import "../variables";
+@import "../mixins";
+
+/**
+ * Main page header navigation. This is a fairly complex
+ * responsive component that is designed to work on mobile
+ * and desktop views without JavaScript.
+ */
+.header.main {
+  font-family: var(--font-family-headings);
+  padding: var(--margin-page-v) var(--margin-page-h);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  a {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+  }
+
+  background-color: var(--theme-header-bg);
+  color: var(--theme-header-fg);
+}
+
+.header.main .banner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: auto;
+}
+
+.header.main .logo {
+  margin-bottom: -1rem;
+
+  @media (min-width: $breakpoint-tablet) {
+    // Negative margin to push down centre line of logo
+    // so the 'H' aligns with nav bar.
+    margin-bottom: -$space-xl;
+  }
+
+  @media (min-width: $breakpoint-laptop) {
+    //margin-bottom: -($space-xl + $space-sm);
+  }
+}
+
+.header.main .logo img {
+  width: 69px;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 117px;
+  }
+
+  @media (min-width: $breakpoint-laptop) {
+    width: unset;
+  }
+}
+
+.header.main .title {
+  font-size: var(--font-size-md);
+  margin-left: $space-md;
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-left: 33px;
+    font-size: var(--font-size-lg);
+  }
+
+  @media (min-width: $breakpoint-laptop) {
+    margin-left: 44px;
+    margin-right: 1rem;
+  }
+}
+
+// Language switcher...
+.language-switcher {
+  font-family: var(--font-family-headings);
+  display: flex;
+  flex-direction: row;
+  margin: 0 1rem;
+  font-size: var(--font-size-sm);
+
+  .language-switcher-item {
+    list-style: none;
+    padding: 0 .5rem;
+    //border-left: 1px solid #686867;
+    line-height: 1rem;
+    display: block;
+  }
+
+  .language-switcher-item.active {
+    display: none;
+  }
+
+  .language-switcher-item a {
+    color: var(--theme-fg-accent);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .language-switcher-item.active a {
+    color: var(--theme-header-fg-muted);
+  }
+
+  .language-switcher-item:first-child {
+    border-left: none;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-right: 0;
+    text-transform: uppercase;
+    position: absolute;
+    top: $space-lg;
+    right: $space-md;
+
+    .language-switcher-item.active {
+      display: unset;
+    }
+    .language-switcher-item + .language-switcher-item {
+      border-left: 1px solid #686867;
+    }
+  }
+}
+
+// The container for the main navigation contains an opaque checkbox and some spans that
+// are styled to look like a hamburger toggle beneath it. When the input is checked,
+// by clicking on the hamburger toggle, the menu is displayed. This is done by using
+// the adjacent sibling selector to target the menu when the input is checked.
+.navbar-container {
+
+  // Hide hamburger toggle label, for accessibility only
+  label[for='hamburger-toggle'] {
+    display: none;
+  }
+
+  // Hamburger toggle... lots of magic numbers here unfortunately, it's just how
+  // the hamburger is drawn.
+  .hamburger-toggle {
+    display: block;
+    width: 40px;
+    height: var(--font-size-lg);
+    position: relative;
+    float: right;
+    right: 7px;
+
+    cursor: pointer;
+
+    opacity: 0; /* hide this */
+    z-index: 1002; /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
+  }
+
+  .hamburger-part {
+    display: block;
+    width: 23px;
+    height: 3px;
+    margin-bottom: 5px;
+    position: relative;
+    top: $space-sm;
+
+    background-color: var(--theme-fg);
+    border-radius: 3px;
+
+    z-index: 1001;
+
+    transform-origin: 4px 0;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+  }
+
+  .hamburger-part:first-child {
+    transform-origin: 0 0;
+  }
+
+  .hamburger-part:nth-last-child(2) {
+    transform-origin: 0 100%;
+  }
+
+  // When the hamburger toggle is checked, move the lines to a cross...
+  .hamburger-toggle:checked ~ .hamburger-part {
+    opacity: 1;
+    // Invert colour
+    background-color: var(--theme-footer-fg);
+    transform: rotate(45deg) translate(1px, 3px);
+  }
+  // The middle burger part is hidden...
+  .hamburger-toggle:checked ~ .hamburger-part:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  // ... and the last burger part is rotated the other way...
+  .hamburger-toggle:checked ~ .hamburger-part:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+
+  // ... and position the menu onscreen
+  .hamburger-toggle:checked ~ .hamburger-part ~ .hamburger-part ~ .hamburger-part ~ .navbar {
+    padding-left: var(--margin-page-h);
+    /* to stop flickering of text in safari */
+    -webkit-font-smoothing: antialiased;
+    transition: width 0.4s, padding-left 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    width: 100%;
+  }
+
+  // At tablet widths, the menu is more or less the same, but a bit larger
+  @media(min-width: $breakpoint-tablet) {
+    .hamburger-toggle {
+      width: 40px;
+    }
+
+    .hamburger-part {
+      width: 30px;
+    }
+
+    .hamburger-toggle:checked ~ .hamburger-part {
+      transform: rotate(45deg) translate(-2px, -1px);
+    }
+
+    // At table widths, the menu takes up 50% of the screen or 500px, whichever is larger
+    .hamburger-toggle:checked ~ .hamburger-part ~ .hamburger-part ~ .hamburger-part ~ .navbar {
+      width: Max(50%, 500px); // Note: Uppercase Sass/Css disambiguation here
+    }
+  }
+
+  @media(min-width: $breakpoint-laptop) {
+    //min-width: 60%;
+
+    // Hide hamburger toggle
+    .hamburger-toggle,
+    .hamburger-part {
+      display: none;
+    }
+
+    // Unset any styles on the navbar
+    .hamburger-toggle:checked ~ .hamburger-part ~ .hamburger-part ~ .hamburger-part ~ .navbar {
+      width: unset;
+    }
+  }
+}
+
+
+.navbar-container .navbar {
+  background-color: var(--theme-footer-bg);
+  color: var(--theme-footer-fg);
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 0; // 0 size until toggle is clicked
+  bottom: 0;
+  overflow: hidden;
+  padding: calc(var(--margin-page-v) + #{$space-md}) 0; // fudge!
+
+  a {
+    background-color: transparent;
+    color: var(--theme-footer-fg);
+    font-weight: var(--font-weight-bolder);
+    font-size: var(--font-size-lg);
+  }
+
+  // At wide widths the menu changes completely to a simple horizontal list of menu items
+  // so we need to unset all the styles we've set before.
+  @media (min-width: $breakpoint-laptop) {
+    background-color: transparent;
+    box-shadow: none;
+
+    box-sizing: unset;
+    position: unset;
+    top: unset;
+    right: unset;
+    bottom: unset;
+    left: unset;
+
+    width: unset; // 0 size until toggle is clicked
+    overflow: unset;
+    padding: unset;
+    z-index: unset;
+  }
+}
+
+.navbar-container .navbar .header-menu {
+  flex-direction: column;
+  align-items: unset;
+  justify-content: unset;
+  margin: 0;
+  padding: 0;
+
+  > .header-menu-item {
+    list-style: none;
+    margin-bottom: $space-lg;
+    margin-left: 0;
+    // important to prevent an odd resize in transition
+    white-space: nowrap;
+  }
+
+  > .header-menu-item > a {
+    @include button();
+    white-space: break-spaces;
+    background-color: transparent;
+    color: var(--theme-footer-fg);
+
+    &:hover {
+      font-weight: var(--font-weight-bolder);
+    }
+  }
+
+  // At wide widths the menu changes completely to a
+  // simple horizontal list of menu items:
+  @media (min-width: $breakpoint-laptop) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0;
+    padding: 0;
+
+    > .header-menu-item {
+      list-style: none;
+      text-align: center;
+      margin-bottom: unset;
+    }
+
+    > .header-menu-item:last-child {
+      margin-right: 0;
+    }
+
+    > .header-menu-item > a {
+      font-size: var(--font-size-base);
+      color: var(--theme-header-fg-accent);
+      //white-space: break-spaces;
+
+      // On hover, make background beige.
+      &:hover {
+        color: var(--theme-header-fg-accent);
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-bold);
+        border-color: var(--theme-bg-accent);
+        background-color: var(--theme-bg-accent);
+      }
+    }
+  }
+}
+
+.navbar .social {
+  display: block;
+  margin-bottom: $space-lg;
+  padding: 0.75rem 1.25rem;
+
+  a {
+    font-size: 1rem;
+  }
+
+  // Hide social icons on wide screens where
+  // menu items are displayed horizontally
+  @media (min-width: $breakpoint-laptop) {
+    display: none;
+  }
+}
+
+
+
+

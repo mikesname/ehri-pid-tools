@@ -1,0 +1,30 @@
+
+@import "../variables";
+@import "../mixins";
+
+// An action button
+.button-primary {
+  @include button();
+
+  color: var(--theme-fg-accent);
+  border: 2px solid var(--theme-fg-accent);
+  white-space: nowrap;
+  background-color: transparent;
+  font-size: $font-size-md;
+  line-height: 1.35rem;
+  background-image: none;
+
+  &:hover {
+    border-color: var(--theme-bg-accent);
+    background-color: var(--theme-bg-accent);
+  }
+}
+
+// Small row of social media buttons
+.follow-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: $space-md;
+  width: fit-content;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,214 @@
+@(id: String, target: String, metadata: DataCiteMetadata)(implicit request: RequestHeader, messages: Messages, config: AppConfig)
+
+@relatedIdentifierSection(relatedIdentifiers: Seq[RelatedIdentifier], `type`: String, name: String) = {
+  @defining(relatedIdentifiers.filter(item => item.relationType == `type`)) { typeIdentifiers =>
+    @if(typeIdentifiers.nonEmpty) {
+      <h3>@name</h3>
+      <div class="metadata-item">
+        <div class="metadata-value">
+        @for(obj <- typeIdentifiers) {
+          @if(obj.relatedIdentifierType == "DOI") {
+            <a href="@config.doiUrl(obj.relatedIdentifier)">
+            @config.doiUrl(obj.relatedIdentifier)
+            </a>
+          }
+          @* {% if not loop.last %}, {% endif %}*@
+        }
+        </div>
+      </div>
+    }
+  }
+}
+
+@extraHead = {
+  <meta name="DC.identifier" content="@config.doiUrl(id)">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/citation-js/0.7.17/citation.js" crossorigin="anonymous"
+  referrerpolicy="no-referrer"></script>
+  <script>
+          const doi = "@id"; // FAKE
+          const doiUrl = "@config.doiUrl(id)";
+          const Cite = require('citation-js');
+  </script>
+  <script src="@routes.Assets.versioned("js/cite-doi.js")"></script>
+}
+
+@views.html.layout.base(metadata.title.getOrElse(Messages("doi.doi", id)), extraHead = extraHead) {
+  <section class="doi-banner">
+    <div class="doi-identifier">
+      <span property="identifier">
+        <a href="@config.doiUrl(id)">@config.doiUrl(id)</a></span>
+    </div>
+    <div class="doi-actions">
+      <a href="#" id="doi-cite-action" class="button-primary">Cite</a>
+      <a href="#" id="doi-share-action" class="button-primary">Share</a>
+    </div>
+  </section>
+  @* {% if error %}*@
+  @*<div class="alert alert-danger" role="alert">*@
+  @* {{ error }}*@
+    <!--</div>-->
+  @* {% else %}*@
+  @for(related <- metadata.relatedIdentifiers.toSeq.flatten) {
+    @if(related.relationType == "IsPreviousVersionOf" && related.relatedIdentifierType == "DOI") {
+      <div class="alert alert-warning" role="alert">
+        There is a newer version of this item available at:
+        <a href="@config.doiUrl(related.relatedIdentifier)">@config.doiUrl(related.relatedIdentifier)</a>
+      </div>
+    }
+  }
+
+
+  <article class="metadata-section" typeof="ScholarlyArticle" resource="#publication">
+
+    @metadata.titles.headOption.map { obj =>
+      <h1 property="name">@obj.title</h1>
+    }
+
+    @metadata.titles.tail.map { obj =>
+      <h2>@obj.title</h2>
+    }
+
+    <div class="two-columns">
+      <div class="column-1 related-identifiers">
+        @if(metadata.creators.nonEmpty) {
+          <h2>Creators</h2>
+          @metadata.creators.map { obj =>
+            <ul class="contributors-list">
+              <li class="contributor-item">
+                <span property="name">@obj.familyName, @obj.givenName</span>
+                @obj.nameIdentifiers.toSeq.flatten.map { ident =>
+                  @if(ident.nameIdentifierScheme == "ORCID") {
+                    <a class="contributor-orcid" href="@ident.nameIdentifier" target="_blank">
+                      <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
+                    </a>
+                  }
+                }
+              </li>
+            </ul>
+          }
+        }
+
+        @metadata.version.map { version =>
+          <div class="metadata-item">
+            <div class="metadata-label">Version:</div>
+            <div class="metadata-value" property="version">@version</div>
+          </div>
+        }
+
+        @metadata.publisher.map { publisher =>
+          <div class="metadata-item">
+            <div class="metadata-label">Publisher:</div>
+            <div class="metadata-value" property="publisher" typeof="Organization">
+              <span property="name">@publisher</span>
+            </div>
+          </div>
+        }
+
+      </div>
+
+      <div class="column-2 citation-box">
+        <h2>Cite this item</h2>
+        <div class="citation-formats">
+          <div class="citation-controls">
+            <select id="citation-format-selector">
+              <option value="apa">APA</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+              <option value="harvard">Harvard</option>
+              <option value="bibtex" selected>BibTeX</option>
+              <option value="ris">RIS</option>
+            </select>
+            <button id="copy-citation" class="button-primary">
+              <i class="fa fa-copy"></i>
+              Copy
+            </button>
+          </div>
+          <div class="citation-result">
+            <pre id="citation-text" class="citation-text"></pre>
+          </div>
+          <div class="citation-copied" style="display: none;">Citation copied!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="target-card">
+      <div class="target-img">
+        <img src="@routes.Assets.versioned("images/target-image-placeholder.svg")" alt="Image for item">
+      </div>
+      <div class="target-info">
+        @metadata.titles.headOption.map { obj =>
+          <header class="target-header">
+            <h2 class="target-title" property="name">
+              <span>@obj.title</span>
+            </h2>
+          </header>
+        }
+        @metadata.descriptions.toSeq.flatten.map { description =>
+          <div class="target-description">
+            @description.description
+          </div>
+        }
+      </div>
+      <footer class="target-footer">
+        <a href="@target">@target</a>
+      </footer>
+    </div>
+
+    @metadata.descriptions.toSeq.flatten.map { description =>
+      <div class="abstract" property="description">
+        <blockquote class="abstract-text">
+          @description.description
+        </blockquote>
+      </div>
+    }
+
+    @if(metadata.contributors.exists(_.nonEmpty)) {
+      <h2>Contributors</h2>
+      @metadata.contributors.toSeq.flatten.map { obj =>
+        <ul class="contributors-list">
+          <li class="contributor-item">
+            <span property="author" typeof="Person">
+              <span property="name">@obj.name</span>
+            </span>
+            <span class="contributor-role">@obj.contributorType</span>
+            @obj.nameIdentifiers.toSeq.flatten.map { ident =>
+              @if(ident.nameIdentifierScheme == "ORCID") {
+                <span class="contributor-orcid">
+                  <a href="@ident.nameIdentifier" target="_blank">
+                    <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
+                  </a>
+                </span>
+              }
+            }
+          </li>
+        </ul>
+      }
+    }
+
+    @if(metadata.subjects.exists(_.nonEmpty)) {
+      <h2>Subject</h2>
+      <div class="metadata-item">
+        <div class="metadata-value">
+        @metadata.subjects.toSeq.flatten.map { obj =>
+          <span property="about">@obj.subject</span>,
+        }
+        </div>
+      </div>
+    }
+
+    <h2>License</h2>
+    <div class="metadata-item">
+      <div class="metadata-value" property="license">
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0
+          International (CC BY 4.0)</a>
+      </div>
+    </div>
+
+    @if(metadata.relatedIdentifiers.exists(_.nonEmpty)) {
+      <h2>Related Resources</h2>
+      @relatedIdentifierSection(metadata.relatedIdentifiers.toSeq.flatten, "HasTranslation", "Has Translation")
+    }
+
+  </article>
+}

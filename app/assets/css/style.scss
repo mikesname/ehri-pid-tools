@@ -1,0 +1,29 @@
+/**
+ * EHRI National Node template site styling.
+ */
+
+// Global styles
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "base";
+
+// Layout styles
+@import "layouts/header";
+@import "layouts/footer";
+
+// Component styles
+@import "components/breadcrumbs";
+@import "components/buttons";
+@import "components/alert";
+@import "components/resource-cards";
+
+// Page-specific styles
+@import "pages/home";
+
+// Font Awesome 6, with 4 shim
+@import "fa/fontawesome";
+@import "fa/regular";
+@import "fa/solid";
+@import "fa/brands";
+@import "fa/v4-shims";
