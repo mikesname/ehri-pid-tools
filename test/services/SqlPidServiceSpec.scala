@@ -9,7 +9,24 @@ class SqlPidServiceSpec extends AppSpec with DatabaseSupport {
 
   "SqlPidService" should {
     "find all items of a given type" in {
-      await(pidService.findAll(PidType.DOI)).length mustBe 1
+      await(pidService.findAll(PidType.DOI)).length mustBe 2
+    }
+
+    "fetch pids" in {
+      val pids = await(pidService.findById(PidType.DOI, "10.14454/fxws-0523"))
+      pids mustBe defined
+      pids.get.value mustBe "10.14454/fxws-0523"
+      pids.get.target mustBe "https://example.com/pid-test-1"
+    }
+
+    "fetch pids with tombstones" in {
+      val pids = await(pidService.findById(PidType.DOI, "10.14454/fxws-0524"))
+      pids mustBe defined
+      pids.get.value mustBe "10.14454/fxws-0524"
+      pids.get.target mustBe "https://example.com/pid-test-2"
+      pids.get.tombstone mustBe defined
+      pids.get.tombstone.get.client mustBe "system"
+      pids.get.tombstone.get.reason mustBe "Test deletion"
     }
 
     "create new items" in {
@@ -33,6 +50,18 @@ class SqlPidServiceSpec extends AppSpec with DatabaseSupport {
 
     "delete items" in {
       await(pidService.delete(PidType.DOI, "10.14454/fxws-0523")) mustBe true
+    }
+
+    "tombstone items" in {
+      await(pidService.tombstone(PidType.DOI, "10.14454/fxws-0523", "system", "Test reason")) mustBe true
+    }
+
+    "not tombstone non-existing items" in {
+      await(pidService.tombstone(PidType.DOI, "10.1234/5678", "system", "Test reason")) mustBe false
+    }
+
+    "delete tombstones" in {
+      await(pidService.deleteTombstone(PidType.DOI, "10.14454/fxws-0524")) mustBe true
     }
   }
 }

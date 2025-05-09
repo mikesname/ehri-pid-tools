@@ -1,5 +1,7 @@
 package models
 
+import org.apache.pekko.util.ByteString
+import play.api.http.Writeable
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
 
@@ -16,4 +18,9 @@ object JsonApiData {
   )(unlift(JsonApiData.unapply))
 
   implicit val _reads: Reads[JsonApiData] = Json.reads[JsonApiData]
+
+  implicit val _writeable: Writeable[JsonApiData] = Writeable(
+    data => ByteString(Json.toBytes(Json.toJson(data))),
+    Some("application/vnd.api+json")
+  )
 }

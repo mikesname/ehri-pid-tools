@@ -1,7 +1,7 @@
 package services
 
 import anorm.{Macro, RowParser, SqlStringInterpolation}
-import models.{Pid, PidType}
+import models.{Pid, PidType, Tombstone}
 import play.api.Configuration
 import play.api.db.Database
 
@@ -10,7 +10,8 @@ import scala.concurrent.{ExecutionContext, Future}
 
 case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit ec: ExecutionContext) extends PidService {
 
-  private implicit val pidParser: RowParser[Pid] = Macro.parser[Pid]("ptype", "value", "target")
+  private implicit val tombstoneParser: RowParser[Option[Tombstone]] = Macro.parser[Tombstone]("deleted_at", "client", "reason").?
+  private implicit val pidParser: RowParser[Pid] = Macro.parser[Pid]("ptype", "value", "target", "tombstone")
 
   override def findAll(ptype: PidType.Value): Future[Seq[Pid]] = Future {
     db.withConnection{ implicit conn =>
@@ -21,7 +22,10 @@ case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit
 
   override def findById(ptype: PidType.Value, value: String): Future[Option[Pid]] = Future {
     db.withConnection { implicit conn =>
-      SQL"SELECT ptype, value, target FROM pids WHERE ptype = $ptype::pid_type AND value = $value"
+      SQL"""SELECT p.ptype, p.value, p.target, t.client, t.reason, t.deleted_at
+           FROM pids p
+           LEFT JOIN tombstones t ON p.id = t.pid_id
+           WHERE p.ptype = $ptype::pid_type AND p.value = $value"""
         .as(pidParser.singleOpt)
     }
   }(ec)
@@ -46,6 +50,23 @@ case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit
   override def delete(ptype: PidType.Value, value: String): Future[Boolean] = Future {
     db.withConnection { implicit conn =>
       SQL"DELETE FROM pids WHERE ptype = $ptype::pid_type AND value = $value"
+        .executeUpdate() == 1
+    }
+  }(ec)
+
+  override def tombstone(ptype: PidType.Value, value: String, client: String, reason: String): Future[Boolean] = Future {
+    db.withConnection { implicit conn =>
+      SQL"""INSERT INTO tombstones (pid_id, client, reason)
+           SELECT id, $client, $reason
+           FROM pids
+           WHERE ptype = $ptype::pid_type AND value = $value"""
+        .executeUpdate() == 1
+    }
+  }(ec)
+
+  override def deleteTombstone(ptype: PidType.Value, value: String): Future[Boolean] = Future {
+    db.withConnection { implicit conn =>
+      SQL"DELETE FROM tombstones WHERE pid_id = (SELECT id FROM pids WHERE ptype = $ptype::pid_type AND value = $value)"
         .executeUpdate() == 1
     }
   }(ec)

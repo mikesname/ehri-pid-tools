@@ -12,4 +12,5 @@ case class Pid(
   ptype: PidType.Value,
   value: String,
   target: String,
+  tombstone: Option[Tombstone] = None,
 )

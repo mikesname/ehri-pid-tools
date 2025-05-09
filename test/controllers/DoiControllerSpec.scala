@@ -1,6 +1,7 @@
 package controllers
 
 import helpers.{AppSpec, DatabaseSupport, resourceAsJson}
+import models.JsonApiData
 import play.api.libs.json.{JsDefined, JsObject, JsString, Json}
 import play.api.test.Helpers._
 import play.api.test._
@@ -44,7 +45,7 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport {
       contentType(result) mustBe Some("application/vnd.api+json")
       // NB: this is the error message we get when we don't have the DOI registered
       // in our PID service.
-      contentAsString(result) must include ("errors.doi.notFound")
+      contentAsString(result) must include ("The DOI you provided does not exist or is not valid")
     }
 
     "handle 404s with HTML" in {
@@ -119,7 +120,7 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport {
       status(result) mustBe BAD_REQUEST
       contentType(result) mustBe Some("application/json")
       val out = contentAsJson(result)
-      (out \ "error" \ "message").asOpt[String] must be(defined)
+      (out \ "errors" \ 0 \ "title").asOpt[String] must be(defined)
     }
 
     "fail to register a DOI with invalid authorization" in {
@@ -136,6 +137,23 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport {
       status(result) mustBe UNAUTHORIZED
       contentType(result) mustBe Some("application/vnd.api+json")
       contentAsString(result) must include ("The token is missing, invalid or expired")
+    }
+
+    "tombstone a DOI" in {
+      val request = FakeRequest(POST, routes.DoiController.tombstone(prefix, suffix).url)
+        .withHeaders("Authorization" -> basicAuthString)
+        .withBody(JsonApiData(Json.obj("reason" -> "Test reason")))
+      val result = call(controller.tombstone(prefix, suffix), request)
+
+      status(result) mustBe NO_CONTENT
+    }
+
+    "untombstone a DOI" in {
+      val altSuffix = "fxws-0524"
+      val request = FakeRequest(DELETE, routes.DoiController.deleteTombstone(prefix, altSuffix).url)
+        .withHeaders("Authorization" -> basicAuthString)
+      val result = call(controller.deleteTombstone(prefix, altSuffix), request)
+      status(result) mustBe NO_CONTENT
     }
   }
 }

@@ -15,12 +15,13 @@ CREATE TABLE pids (
     UNIQUE (ptype, value)                                      -- ensure unique combination of type and value
 );
 
-CREATE TABLE tombstone (
+CREATE TABLE tombstones (
     id serial PRIMARY KEY,                                          -- the primary key
     pid_id integer NOT NULL REFERENCES pids(id) ON DELETE CASCADE,  -- the PID that was deleted
     deleted_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,  -- when the PID was deleted
     client varchar(100) NOT NULL,                                   -- the user who deleted the PID
-    reason text NOT NULL                                            -- the reason for deletion
+    reason text NOT NULL,                                           -- the reason for deletion
+    UNIQUE (pid_id)                                                 -- ensure unique PID in tombstones
 );
 
 -- Composite index for lookups by type and value
@@ -44,6 +45,6 @@ CREATE TRIGGER update_pids_modtime
 
 DROP TRIGGER update_pids_modtime ON pids;
 DROP FUNCTION update_modified_column();
-DROP TABLE tombstone;
+DROP TABLE tombstones;
 DROP TABLE pids;
 DROP TYPE pid_type;

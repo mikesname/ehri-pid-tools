@@ -16,4 +16,8 @@ trait PidService {
   def update(ptype: PidType.Value, value: String, target: String): Future[Pid]
 
   def delete(ptype: PidType.Value, value: String): Future[Boolean]
+
+  def tombstone(ptype: PidType.Value, value: String, client: String, reason: String): Future[Boolean]
+
+  def deleteTombstone(ptype: PidType.Value, value: String): Future[Boolean]
 }

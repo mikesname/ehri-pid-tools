@@ -1,9 +1,10 @@
 package controllers
 
 import auth.AuthAction
-import models.{Doi, PidType}
+import models.{Doi, JsonApiData, PidType, TombstoneReason}
 import play.api.i18n.{I18nSupport, Messages}
-import play.api.libs.json.Json
+import play.api.libs.json.JsError.toJson
+import play.api.libs.json.{JsError, JsSuccess, Json, Reads}
 import play.api.mvc._
 import services.{DoiService, PidService}
 
@@ -24,12 +25,35 @@ class DoiController @Inject()(
 
   private val logger = play.api.Logger(getClass)
 
-  private def jsonApiError(status: Status, message: String)(implicit request: RequestHeader): Result = {
+  // To override the max request size we unfortunately need to define our own body parser here:
+  // The max value is drawn from config:
+  private def apiJson[A](implicit reader: Reads[A]): BodyParser[A] = BodyParser { request =>
+    parse.tolerantJson(request).map {
+      case Left(simpleResult) => Left(simpleResult)
+      case Right(jsValue) =>
+        jsValue.validate(reader).map { a =>
+          Right(a)
+        } recoverTotal { jsError =>
+          Left(BadRequest(
+            Json.obj("errors" -> Json.arr(
+              Json.obj(
+                "status" -> BadRequest.header.status,
+                "title" -> "Unexpected JSON payload", // TODO: i18n?
+                "details" -> toJson(jsError),
+              )
+            ))
+          ))
+        }
+    }
+  }
+
+
+  private def jsonApiError(status: Status, message: String, args: String*)(implicit request: RequestHeader): Result = {
     val errorResponse = Json.obj(
       "errors" -> Json.arr(
         Json.obj(
           "status" -> status.header.status,
-          "title" -> Messages(message)
+          "title" -> Messages(message, args: _*)
         )
       )
     )
@@ -62,7 +86,7 @@ class DoiController @Inject()(
     }
   }
 
-  def register(): Action[Doi] = AuthAction.async(parse.tolerantJson[Doi]) { implicit request =>
+  def register(): Action[Doi] = AuthAction.async(apiJson[Doi]) { implicit request =>
     val metadata = request.body.metadata
     val target = request.body.target
 
@@ -81,7 +105,7 @@ class DoiController @Inject()(
     } yield Created(Doi(target, doiMetadata))
   }
 
-  def update(prefix: String, suffix: String): Action[Doi] = AuthAction.async(parse.tolerantJson[Doi]) { implicit request =>
+  def update(prefix: String, suffix: String): Action[Doi] = AuthAction.async(apiJson[Doi]) { implicit request =>
     val metadata = request.body.metadata
     val target = request.body.target
 
@@ -101,5 +125,34 @@ class DoiController @Inject()(
       _ <- doiService.deleteDoi(s"$prefix/$suffix")
       _ <- pidService.delete(PidType.DOI, s"$prefix/$suffix")
     } yield NoContent
+  }
+
+  def tombstone(prefix: String, suffix: String): Action[JsonApiData] = AuthAction.async(apiJson[JsonApiData]) { implicit request =>
+    request.body.data.validate[TombstoneReason] match {
+      case JsSuccess(reason, _) =>
+        val doi = s"$prefix/$suffix"
+        logger.debug(s"Tombstoning DOI '$doi' with reason: '$reason'...")
+
+        pidService.tombstone(PidType.DOI, doi, request.clientId, reason.reason).map {
+          case true => NoContent
+          case false =>
+            jsonApiError(BadRequest, "errors.doi.tombstoneFailed", doi)
+        }
+
+      case JsError(errors) =>
+        logger.error(s"Invalid request body: $errors")
+        immediate(jsonApiError(BadRequest, "errors.invalidRequest"))
+    }
+  }
+
+  def deleteTombstone(prefix: String, suffix: String): Action[AnyContent] = AuthAction.async { implicit request =>
+    val doi = s"$prefix/$suffix"
+    logger.debug(s"Deleting tombstone for DOI '$doi'...")
+
+    pidService.deleteTombstone(PidType.DOI, doi).map {
+      case true => NoContent
+      case false =>
+        jsonApiError(BadRequest, "errors.doi.tombstoneNotFound", doi)
+    }
   }
 }
