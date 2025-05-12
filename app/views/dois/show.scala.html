@@ -1,23 +1,29 @@
 @(pid: Pid, metadata: DataCiteMetadata)(implicit request: RequestHeader, messages: Messages, config: AppConfig)
 
-@relatedIdentifierSection(relatedIdentifiers: Seq[RelatedIdentifier], `type`: String, name: String) = {
-  @defining(relatedIdentifiers.filter(item => item.relationType == `type`)) { typeIdentifiers =>
-    @if(typeIdentifiers.nonEmpty) {
-      <h3>@name</h3>
-      <div class="metadata-item">
-        <div class="metadata-value">
-        @for(obj <- typeIdentifiers) {
-          @if(obj.relatedIdentifierType == "DOI") {
-            <a href="@config.doiUrl(obj.relatedIdentifier)">
-            @config.doiUrl(obj.relatedIdentifier)
-            </a>
-          }
-          @* {% if not loop.last %}, {% endif %}*@
+@relatedIdentifierSection(relatedIdentifiers: Seq[RelatedIdentifier], `type`: String) = {
+@defining(relatedIdentifiers.filter(item => item.relationType == `type`)) { typeIdentifiers =>
+  @if(typeIdentifiers.nonEmpty) {
+    <h3>@Messages("dataCite.relatedIdentifiers.relationType." + `type`)</h3>
+    <div class="metadata-item">
+      <div class="metadata-value">
+      @for(obj <- typeIdentifiers) {
+        @obj.resourceTypeGeneral.map { rtg =>
+          <span class="resource-type-general">
+            @Messages("dataCite.resourceTypeGeneral." + rtg)
+          </span>
         }
-        </div>
+        @if(obj.relatedIdentifierType == "DOI") {
+          <a href="@config.doiUrl(obj.relatedIdentifier)">
+          @config.doiUrl(obj.relatedIdentifier)
+          </a>
+          (DOI)
+        }
+        @* {% if not loop.last %}, {% endif %}*@
+      }
       </div>
-    }
+    </div>
   }
+}
 }
 
 @extraHead = {
@@ -72,43 +78,80 @@
     <div class="two-columns">
       <div class="column-1 related-identifiers">
         @if(metadata.creators.nonEmpty) {
-          <h2>Creators</h2>
-          @metadata.creators.map { obj =>
-            <ul class="contributors-list">
-              <li class="contributor-item">
-                <span property="name">@obj.familyName, @obj.givenName</span>
-                @obj.nameIdentifiers.toSeq.flatten.map { ident =>
-                  @if(ident.nameIdentifierScheme == "ORCID") {
-                    <a class="contributor-orcid" href="@ident.nameIdentifier" target="_blank">
-                      <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
-                    </a>
-                  }
-                }
-              </li>
-            </ul>
-          }
-        }
-
-        @metadata.version.map { version =>
           <div class="metadata-item">
-            <div class="metadata-label">Version:</div>
-            <div class="metadata-value" property="version">@version</div>
-          </div>
+          @metadata.creators.map { obj =>
+            <div class="metadata-label">@Messages("dataCite.creators"):</div>
+              <ul class="metadata-value metadata-value-list">
+                <li class="contributor-item">
+                  <span property="name">@obj.familyName, @obj.givenName</span>
+                  @obj.nameIdentifiers.toSeq.flatten.map { ident =>
+                    @if(ident.nameIdentifierScheme == "ORCID") {
+                      <a class="contributor-orcid" href="@ident.nameIdentifier" target="_blank">
+                        <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
+                      </a>
+                    }
+                  }
+                </li>
+              </ul>
+            </div>
+          }
         }
 
         @metadata.publisher.map { publisher =>
           <div class="metadata-item">
-            <div class="metadata-label">Publisher:</div>
+            <div class="metadata-label">@Messages("dataCite.publisher"):</div>
             <div class="metadata-value" property="publisher" typeof="Organization">
               <span property="name">@publisher</span>
             </div>
           </div>
         }
 
+        @metadata.publicationYear.map { year =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.publicationYear"):</div>
+            <div class="metadata-value" property="datePublished">@year</div>
+          </div>
+        }
+
+        @metadata.formats.filter(_.nonEmpty).map { fmts =>
+            <div class="metadata-item">
+              <div class="metadata-label">@Messages("dataCite.format"):</div>
+              <ul class="metadata-value metadata-value-list">
+                @fmts.map { fmt =>
+                  <li class="format-item">@fmt</li>
+                }
+              </ul>
+            </div>
+        }
+
+        @metadata.sizes.filter(_.nonEmpty).map { sizes =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.size"):</div>
+            <ul class="metadata-value metadata-value-list">
+              @sizes.map { size =>
+                <li class="size-item">@size</li>
+              }
+            </ul>
+          </div>
+        }
+
+        @metadata.language.map { lang =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.language"):</div>
+            <div class="metadata-value" property="language">@lang</div>
+          </div>
+        }
+
+        @metadata.version.map { version =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.version"):</div>
+            <div class="metadata-value" property="version">@version</div>
+          </div>
+        }
       </div>
 
       <div class="column-2 citation-box">
-        <h2>Cite this item</h2>
+        <h2>@Messages("pid.citeThisItem")</h2>
         <div class="citation-formats">
           <div class="citation-controls">
             <select id="citation-format-selector">
@@ -133,12 +176,10 @@
     </div>
 
     @pid.tombstone.map { tombstone =>
-      <div class="alert alert-danger" role="alert">
-        <h1>410: GONE</h1>
-        <p>
-          This item has been removed and is no longer available.
-        </p>
-      </div>
+    <div class="alert alert-danger" role="alert">
+      <h1>@Messages("errors.gone")</h1>
+      <p>@Messages("errors.gone.description")</p>
+    </div>
     }.getOrElse {
       <div class="target-card">
         <div class="target-img">
@@ -173,7 +214,7 @@
     }
 
     @if(metadata.contributors.exists(_.nonEmpty)) {
-      <h2>Contributors</h2>
+      <h2>@Messages("dataCite.contributors")</h2>
       @metadata.contributors.toSeq.flatten.map { obj =>
         <ul class="contributors-list">
           <li class="contributor-item">
@@ -196,7 +237,7 @@
     }
 
     @if(metadata.subjects.exists(_.nonEmpty)) {
-      <h2>Subject</h2>
+      <h2>@Messages("dataCite.subjects")</h2>
       <div class="metadata-item">
         <div class="metadata-value">
         @metadata.subjects.toSeq.flatten.map { obj =>
@@ -206,17 +247,24 @@
       </div>
     }
 
-    <h2>License</h2>
-    <div class="metadata-item">
-      <div class="metadata-value" property="license">
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0
-          International (CC BY 4.0)</a>
-      </div>
-    </div>
+    @metadata.rightsSeq.filter(_.nonEmpty).map { rights =>
+      <h2>@Messages("dataCite.rights")</h2>
+      @rights.map { obj =>
+        <div class="metadata-item">
+          <div class="metadata-value" property="license">
+            @obj.schemeURI.map { uri =>
+              <a href="@uri" target="_blank">@obj.value</a>
+            }.getOrElse {
+              <span property="name">@obj.value</span>
+            }
+          </div>
+        </div>
+      }
+    }
 
     @if(metadata.relatedIdentifiers.exists(_.nonEmpty)) {
-      <h2>Related Resources</h2>
-      @relatedIdentifierSection(metadata.relatedIdentifiers.toSeq.flatten, "HasTranslation", "Has Translation")
+      <h2>@Messages("dataCite.relatedIdentifiers")</h2>
+      @relatedIdentifierSection(metadata.relatedIdentifiers.toSeq.flatten, "HasTranslation")
     }
 
   </article>
