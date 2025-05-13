@@ -11,6 +11,7 @@ libraryDependencies += guice
 libraryDependencies += jdbc
 libraryDependencies += evolutions
 libraryDependencies += ws
+libraryDependencies += caffeine
 
 // Anorm DB lib
 libraryDependencies += "org.playframework.anorm" %% "anorm" % "2.8.1"
@@ -18,6 +19,9 @@ libraryDependencies += "org.playframework.anorm" %% "anorm-postgres" % "2.8.1"
 
 // Play JSON lib
 libraryDependencies += "org.playframework" %% "play-json" % "3.0.4"
+
+// Site previews
+libraryDependencies += "org.jsoup" % "jsoup" % "1.16.1"
 
 // Testing
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test

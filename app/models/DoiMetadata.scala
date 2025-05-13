@@ -6,8 +6,8 @@ import play.api.libs.ws.{BodyWritable, InMemoryBody}
 
 case class DoiMetadata(id: Option[String], `type`: Option[String], attributes: JsValue) {
   def state: String = (attributes \ "state").asOpt[String].getOrElse("draft")
-  def prefix: String = (attributes \ "prefix").asOpt[String].getOrElse("")
-  def suffix: String = (attributes \ "suffix").asOpt[String].getOrElse("")
+  def prefix: String = id.flatMap(_.split("/").headOption).getOrElse("")
+  def suffix: String = id.flatMap(_.split("/").lift(1)).getOrElse("")
   def title: Option[String] = (attributes \ "titles" \ 0 \ "title").asOpt[String]
 
   def withDoi(doi: String): DoiMetadata = {

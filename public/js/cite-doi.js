@@ -44,8 +44,40 @@ function getCitationText(cite, format) {
   }
 }
 
+function interceptXHRUrl(originalUrl, replacementUrl, once = false) {
+  const originalOpen = XMLHttpRequest.prototype.open;
+  let intercepted    = false;
+
+  XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+    if ( ! intercepted && typeof url === 'string' && url.includes( originalUrl )) {
+      console.log( `Intercepted XHR to ${url}` );
+      const newUrl = url.replace( originalUrl, replacementUrl );
+      console.log( `Redirecting to ${newUrl}` );
+
+      if (once) {
+        intercepted = true;
+        setTimeout( restoreOriginal, 0 );
+      }
+      return originalOpen.call( this, method, newUrl, async, user, password );
+    }
+    return originalOpen.apply( this, arguments );
+  };
+
+  function restoreOriginal() {
+    XMLHttpRequest.prototype.open = originalOpen;
+    console.log( 'Restored original XHR behavior' );
+    return true;
+  }
+
+  return restoreOriginal;
+}
+
+
+
 document.onreadystatechange = function () {
   if (document.readyState === "complete") {
+
+    interceptXHRUrl('https://doi.org/', 'https://api.test.datacite.org/', true);
     const cite = new Cite(doi);
     const citationText = document.getElementById('citation-text');
     const citeButton = document.getElementById('doi-cite-action');

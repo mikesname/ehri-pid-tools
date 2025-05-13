@@ -101,8 +101,8 @@ class DoiController @Inject()(
 
     for {
       doiMetadata <- doiService.registerDoi(newMetadata)
-      _ <- pidService.create(PidType.DOI, doi, target, request.clientId)
-    } yield Created(Doi(doiMetadata, target))
+      pid <- pidService.create(PidType.DOI, doi, target, request.clientId)
+    } yield Created(Doi(doiMetadata, target, pid.tombstone))
   }
 
   def update(prefix: String, suffix: String): Action[Doi] = AuthAction.async(apiJson[Doi]) { implicit request =>
@@ -115,8 +115,8 @@ class DoiController @Inject()(
 
     for {
       dm <- doiService.updateDoi(doi, metadata)
-      _ <- pidService.update(PidType.DOI, doi, target)
-    } yield Ok(Doi(dm, target))
+      pid <- pidService.update(PidType.DOI, doi, target)
+    } yield Ok(Doi(dm, target, pid.tombstone))
   }
 
   def delete(prefix: String, suffix: String): Action[AnyContent] = AuthAction.async { implicit request =>

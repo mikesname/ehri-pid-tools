@@ -1,6 +1,6 @@
 package models
 
-object PidType extends Enumeration with StorableEnum {
+object PidType extends Enumeration with EnumToDB {
   val DOI = Value("DOI")
   val ARK = Value("ARK")
   val HANDLE = Value("HANDLE")

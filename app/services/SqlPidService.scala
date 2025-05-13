@@ -40,9 +40,16 @@ case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit
 
   override def update(ptype: PidType.Value, value: String, target: String): Future[Pid] = Future {
     db.withConnection { implicit conn =>
-      SQL"""UPDATE pids SET target = $target
-            WHERE ptype = $ptype::pid_type AND value = $value
-            RETURNING ptype, value, target"""
+      SQL"""WITH updated_pids AS (
+              UPDATE pids
+              SET target = $target
+              WHERE ptype = $ptype::pid_type AND value = $value
+              RETURNING id, ptype, value, target
+            )
+            SELECT p.ptype, p.value, p.target, t.client, t.reason, t.deleted_at
+            FROM updated_pids p
+            LEFT JOIN tombstones t ON p.id = t.pid_id
+            """
         .as(pidParser.single)
     }
   }(ec)

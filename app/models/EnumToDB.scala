@@ -2,7 +2,7 @@ package models
 
 import anorm.{Column, ToStatement, TypeDoesNotMatch}
 
-trait StorableEnum {
+trait EnumToDB {
   self: Enumeration =>
 
   implicit def rowToEnum: Column[Value] = {

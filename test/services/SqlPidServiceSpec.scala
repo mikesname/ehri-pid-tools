@@ -48,6 +48,14 @@ class SqlPidServiceSpec extends AppSpec with DatabaseSupport {
       updatedPid.value mustBe "10.14454/fxws-0523"
     }
 
+    "return tombstone info when update existing items" in {
+      val updatedPid = await(pidService.update(PidType.DOI, "10.14454/fxws-0524", "https://foo.bar/baz/updated"))
+      updatedPid.target mustBe "https://foo.bar/baz/updated"
+      updatedPid.value mustBe "10.14454/fxws-0524"
+      updatedPid.tombstone mustBe defined
+      updatedPid.tombstone.get.client mustBe "system"
+    }
+
     "delete items" in {
       await(pidService.delete(PidType.DOI, "10.14454/fxws-0523")) mustBe true
     }

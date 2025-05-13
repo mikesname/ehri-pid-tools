@@ -10,7 +10,7 @@ trait DoiService {
 
   val DOI_ALPHABET = "0123456789abcdefghjkmnpqrstuvwxyz"
 
-  def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 10, sort: String = "created"): Future[DoiMetadataList]
+  def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 1000, sort: String = "-created"): Future[DoiMetadataList]
 
   def getDoiMetadata(doi: String): Future[DoiMetadata]
 

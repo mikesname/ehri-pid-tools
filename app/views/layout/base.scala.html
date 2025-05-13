@@ -1,4 +1,4 @@
-@(title: String, extraHead: Html = Html(""), extraFoot: Html = Html(""))(content: Html)(implicit request: RequestHeader, messages: Messages)
+@(title: String, extraHead: Html = Html(""), extraFoot: Html = Html(""), vocab: Option[String] = None)(content: Html)(implicit request: RequestHeader, messages: Messages)
 
 <html lang="en">
   <head>
@@ -12,7 +12,7 @@
     @extraHead
 
   </head>
-  <body>
+  <body @vocab.map(v => s"""vocab="$v"""").getOrElse("")>
     <header class="main header">
       <div class="banner">
         <div class="logo">

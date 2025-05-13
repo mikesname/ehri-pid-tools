@@ -17,6 +17,15 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport {
 
   "DoiController GET" should {
 
+    "list DOIs" in {
+      val request = FakeRequest(GET, routes.DoiController.index().url)
+      val result = controller.index().apply(request)
+
+      status(result) mustBe OK
+      contentType(result) mustBe Some("text/html")
+      contentAsString(result) must include ("\"total\":1")
+    }
+
     "fetch a DOI as JSON" in {
       val request = FakeRequest(GET, routes.DoiController.get(prefix, suffix).url)
         .withHeaders("Accept" -> "application/json")

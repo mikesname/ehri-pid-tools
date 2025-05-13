@@ -22,7 +22,7 @@ case class WsDoiService @Inject()(ws: WSClient, config: Configuration)(implicit 
 
   private val doiBaseUrl = config.get[String]("doi.api.baseUrl")
 
-  override def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 10, sort: String = "created"): Future[DoiMetadataList] = {
+  override def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 1000, sort: String = "-created"): Future[DoiMetadataList] = {
     val params = Map(
       "prefix" -> prefix,
       "page[number]" -> page.toString,
