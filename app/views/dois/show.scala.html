@@ -106,20 +106,26 @@
 
     @if(metadata.creators.nonEmpty) {
       <div class="metadata-item">
-      @metadata.creators.map { obj =>
         <ul class="metadata-value metadata-value-list">
-          <li class="contributor-item">
-            <span property="creator">@obj.familyName, @obj.givenName</span>
-            @obj.nameIdentifiers.toSeq.flatten.map { ident =>
-              @if(ident.nameIdentifierScheme == "ORCID") {
-                <a class="contributor-orcid" href="@ident.nameIdentifier" target="_blank">
-                  <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
-                </a>
+          @metadata.creators.map { obj =>
+            <li class="contributor-item">
+              @if(obj.nameType.contains(NameType.Organizational)) {
+                <span property="creator" typeof="Organization">
+                  <span property="name">@obj.name</span>
+                </span>
+              } else {
+                <span property="creator" typeof="Person">@obj.familyName, @obj.givenName</span>
+                @obj.nameIdentifiers.toSeq.flatten.map { ident =>
+                  @if(ident.nameIdentifierScheme == "ORCID") {
+                    <a class="contributor-orcid" href="@ident.nameIdentifier" target="_blank">
+                      <img src="@routes.Assets.versioned("images/orcid-auth.svg")" alt="ORCID logo">
+                    </a>
+                  }
+                }
               }
-            }
-          </li>
+            </li>
+          }
         </ul>
-      }
       </div>
     }
 
@@ -248,7 +254,8 @@
         <div class="metadata-item">
           <div class="metadata-label">@Messages("dataCite.publisher"):</div>
           <div class="metadata-value" property="publisher" typeof="Organization">
-            <span property="name">@publisher</span>
+            <!-- TODO: scheme info and PID -->
+            <span property="name">@publisher.name</span>
           </div>
         </div>
       }
@@ -325,6 +332,7 @@
           <div id="citation-text" class="citation-text"></div>
         </div>
         <div class="citation-controls">
+          <label for="citation-format-selector">@Messages("pid.citeThisItem.format")</label>
           <select id="citation-format-selector">
             <option value="apa" selected>APA</option>
             <option value="mla">MLA</option>

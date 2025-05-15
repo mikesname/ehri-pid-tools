@@ -1,6 +1,7 @@
 package models
 
-import play.api.libs.json.{Json, Reads}
+import play.api.libs.functional.syntax.toFunctionalBuilderOps
+import play.api.libs.json.{JsError, JsNumber, JsObject, JsResult, JsString, JsSuccess, JsValue, Json, Reads, __}
 
 /**
  * Scala case classes representing DataCite v4.7 DOI metadata schema
@@ -17,8 +18,8 @@ case class DataCiteMetadata(
   identifiers: Seq[Identifier],
   creators: Seq[Creator],
   titles: Seq[Title],
-  publisher: Option[String],
-  publicationYear: Option[Int],
+  publisher: Option[Publisher]= None,
+  publicationYear: Option[Int] = None,
   types: ResourceType,
   subjects: Option[Seq[Subject]] = None,
   contributors: Option[Seq[Contributor]] = None,
@@ -59,9 +60,37 @@ case class DataCiteMetadata(
 }
 
 object DataCiteMetadata {
+  /**
+   * Custom Reads implementation that can read a Double from either a JsNumber or a JsString
+   */
+  implicit val flexibleDoubleReads: Reads[Double] = {
+    case JsNumber(n) => JsSuccess(n.toDouble)
+    case JsString(s) =>
+      try {
+        JsSuccess(s.toDouble)
+      } catch {
+        case _: NumberFormatException =>
+          JsError(s"Cannot parse '$s' as a Double")
+      }
+    case json =>
+      JsError(s"Expected a number or string containing a number, got: $json")
+  }
+
+  implicit val flexibleIntReads: Reads[Int] = {
+    case JsNumber(n) if n.isValidInt => JsSuccess(n.toInt)
+    case JsString(s) =>
+      try {
+        JsSuccess(s.toInt)
+      } catch {
+        case _: NumberFormatException =>
+          JsError(s"Cannot parse '$s' as an Int")
+      }
+    case json =>
+      JsError(s"Expected a number or string containing a number, got: $json")
+  }
+
   private implicit def _identifierReads: Reads[Identifier] = Json.reads[Identifier]
   private implicit def _nameIdentifierReads: Reads[NameIdentifier] = Json.reads[NameIdentifier]
-  private implicit def _funderIdentifierReads: Reads[FunderIdentifier] = Json.reads[FunderIdentifier]
   private implicit def _fundingReferenceReads: Reads[FundingReference] = Json.reads[FundingReference]
   private implicit def _affiliationReads: Reads[Affiliation] = Json.reads[Affiliation]
   private implicit def _creatorReads: Reads[Creator] = Json.reads[Creator]
@@ -75,8 +104,6 @@ object DataCiteMetadata {
   private implicit def _rightsReads: Reads[Rights] = Json.reads[Rights]
   private implicit def _descriptionReads: Reads[Description] = Json.reads[Description]
   private implicit def _geoLocationReads: Reads[GeoLocation] = Json.reads[GeoLocation]
-  private implicit def _geoLocationPointReads: Reads[GeoLocationPoint] = Json.reads[GeoLocationPoint]
-  private implicit def _geoLocationBoxReads: Reads[GeoLocationBox] = Json.reads[GeoLocationBox]
   private implicit def _geoLocationPolygonReads: Reads[GeoLocationPolygon] = Json.reads[GeoLocationPolygon]
   private implicit def _relatedItemReads: Reads[RelatedItem] = Json.reads[RelatedItem]
   private implicit def _relatedItemIdentifierReads: Reads[RelatedItemIdentifier] = Json.reads[RelatedItemIdentifier]
@@ -111,6 +138,34 @@ case class Title(
   titleType: Option[TitleType.Value] = None,
   lang: Option[String] = None
 )
+
+/**
+ * Publisher
+ */
+case class Publisher(
+  name: String,
+  publisherIdentifier: Option[String] = None,
+  publisherIdentifierScheme: Option[String] = None,
+  schemeURI: Option[String] = None,
+  lang: Option[String] = None
+)
+
+object Publisher {
+  private val _objReads: Reads[Publisher] = (
+    (__ \ "name").read[String] and
+    (__ \ "publisherIdentifier").readNullable[String] and
+    (__ \ "publisherIdentifierScheme").readNullable[String] and
+    (__ \ "schemeURI").readNullable[String] and
+    (__ \ "lang").readNullable[String]
+  )(Publisher.apply _)
+
+  // Annoying, publisher can either be a string or an object
+  implicit val _reads: Reads[Publisher] = {
+    case JsString(name) => JsSuccess(Publisher(name))
+    case obj: JsObject => _objReads.reads(obj)
+    case other => JsError(s"Expected a string or object for publisher, got: $other")
+  }
+}
 
 /**
  * Represents a resource type
@@ -213,6 +268,12 @@ case class GeoLocationPoint(
   pointLongitude: Double,
   pointLatitude: Double
 )
+object GeoLocationPoint {
+  implicit val _reads: Reads[GeoLocationPoint] = (
+    (__ \ "pointLongitude").read[Double](DataCiteMetadata.flexibleDoubleReads) and
+    (__ \ "pointLatitude").read[Double](DataCiteMetadata.flexibleDoubleReads)
+  )(GeoLocationPoint.apply _)
+}
 
 /**
  * Represents a geographical box area
@@ -223,12 +284,20 @@ case class GeoLocationBox(
   southBoundLatitude: Double,
   northBoundLatitude: Double
 )
+object GeoLocationBox {
+  implicit val _reads: Reads[GeoLocationBox] = (
+    (__ \ "westBoundLongitude").read[Double](DataCiteMetadata.flexibleDoubleReads) and
+    (__ \ "eastBoundLongitude").read[Double](DataCiteMetadata.flexibleDoubleReads) and
+    (__ \ "southBoundLatitude").read[Double](DataCiteMetadata.flexibleDoubleReads) and
+    (__ \ "northBoundLatitude").read[Double](DataCiteMetadata.flexibleDoubleReads)
+  )(GeoLocationBox.apply _)
+}
 
 /**
  * Represents a geographical polygon
  */
 case class GeoLocationPolygon(
-  polygonPoints: List[GeoLocationPoint],
+  polygonPoint: GeoLocationPoint,
   inPolygonPoint: Option[GeoLocationPoint] = None
 )
 
@@ -237,19 +306,12 @@ case class GeoLocationPolygon(
  */
 case class FundingReference(
   funderName: String,
-  funderIdentifier: Option[FunderIdentifier] = None,
+  funderIdentifier: Option[String] = None,
+  funderIdentifierType: FunderIdentifierType.Value,
+  schemeURI: Option[String] = None,
   awardNumber: Option[String] = None,
   awardURI: Option[String] = None,
   awardTitle: Option[String] = None
-)
-
-/**
- * Represents a funder identifier
- */
-case class FunderIdentifier(
-  value: String,
-  funderIdentifierType: FunderIdentifierType.Value,
-  schemeURI: Option[String] = None
 )
 
 /**
@@ -277,8 +339,8 @@ case class RelatedItem(
  * Represents a related item identifier
  */
 case class RelatedItemIdentifier(
-  value: String,
-  relatedItemIdentifierType: String,
+  relatedItemIdentifier: String,
+  relatedItemIdentifierType: RelatedIdentifierType.Value,
   relatedMetadataScheme: Option[String] = None,
   schemeURI: Option[String] = None,
   schemeType: Option[String] = None
@@ -493,7 +555,7 @@ object DescriptionType extends Enumeration with EnumToJSON {
 object FunderIdentifierType extends Enumeration with EnumToJSON {
   val ROR = Value("ROR")
   val GRID = Value("GRID")
-  val Crossref = Value("Crossref")
+  val Crossref = Value("Crossref Funder ID")
   val DOI = Value("DOI")
   val ISNI = Value("ISNI")
   val Other = Value("Other")

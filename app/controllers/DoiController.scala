@@ -1,10 +1,10 @@
 package controllers
 
 import auth.AuthAction
-import models.{Doi, JsonApiData, PidType, TombstoneReason}
+import models.{Doi, DoiMetadata, JsonApiData, Pid, PidType, TombstoneReason}
 import play.api.i18n.{I18nSupport, Messages}
 import play.api.libs.json.JsError.toJson
-import play.api.libs.json.{JsError, JsSuccess, Json, Reads}
+import play.api.libs.json.{JsError, JsSuccess, JsValue, Json, Reads}
 import play.api.mvc._
 import services.{DoiService, PidService}
 
@@ -66,6 +66,21 @@ class DoiController @Inject()(
     doiService.listDoiMetadata(appConfig.doiPrefix).map { doiMetadata =>
       Ok(views.html.dois.list(doiMetadata))
     }
+  }
+
+  def example(): Action[AnyContent] = Action { implicit request =>
+    val fakePid = Pid(PidType.DOI, "10.82422/B09Z-4K37", "https://example.com/", None)
+    val raw = Json.parse(getClass.getResourceAsStream("/datacite-example-B09Z-4K37.json").readAllBytes())
+    val fakeDoi = Doi(
+      metadata = DoiMetadata(
+        id = Some(fakePid.value),
+        `type` = Some("dois"),
+        attributes = (raw \ "data" \ "attributes").as[JsValue]
+      ),
+      target = fakePid.target,
+      tombstone = fakePid.tombstone
+    )
+    Ok(views.html.dois.show(fakePid, fakeDoi.metadata.asDataCiteMetadata))
   }
 
   def get(prefix: String, suffix: String): Action[AnyContent] = Action.async { implicit request =>

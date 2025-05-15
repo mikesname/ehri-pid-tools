@@ -6,6 +6,7 @@ GET           /versioning                            controllers.HomeController.
 # DOI operations
 GET           /dois                                  controllers.DoiController.index()
 GET           /dois/:prefix/:suffix                  controllers.DoiController.get(prefix: String, suffix: String)
+GET           /dois/example                          controllers.DoiController.example()
 +nocsrf
 POST          /dois                                  controllers.DoiController.register()
 +nocsrf

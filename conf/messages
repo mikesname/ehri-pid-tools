@@ -29,7 +29,10 @@ dataCite.language=Language
 dataCite.types.resourceType=Type
 dataCite.subjects=Subjects
 dataCite.rights=Rights
+dataCite.abstract=Abstract
 dataCite.description=Description
+dataCite.versions=Versions
+
 dataCite.resourceTypeGeneral=Resource Type General
 dataCite.resourceTypeGeneral.Audiovisual=Audio/Visual
 dataCite.resourceTypeGeneral.Award=Award

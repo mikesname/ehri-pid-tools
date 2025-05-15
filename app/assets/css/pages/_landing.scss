@@ -58,13 +58,13 @@
   margin: 0;
 }
 
-.metadata-value-list li {
+.metadata-value-list > li {
   &:after {
     content: ',';
   }
 }
 
-.metadata-value-list li:last-child {
+.metadata-value-list > li:last-child {
   &:after {
     content: '';
   }
@@ -118,6 +118,10 @@
  */
 .citation-controls {
   margin-bottom: $space-sm;
+
+  label {
+    display: none;
+  }
 }
 
 .citation-result {
