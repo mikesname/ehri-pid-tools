@@ -71,8 +71,14 @@ body {
   --theme-footer-fg-accent: var(--theme-footer-fg);
   --theme-footer-fg-muted: var(--theme-footer-fg);
 
-  --theme-bg-warning: #fff3cd;
+  --theme-fg-info: #0c5460;
+  --theme-bg-info: #d1ecf1;
+  --theme-fg-success: #155724;
+  --theme-bg-success: #d4edda;
+  --theme-fg-error: #721c24;
+  --theme-bg-error: #f8d7da;
   --theme-fg-warning: #664d03;
+  --theme-bg-warning: #fff3cd;
 
   /** @deprecated: Old hard-coded colours retained for compatibility */
   --purple: #{$purple};

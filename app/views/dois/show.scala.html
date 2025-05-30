@@ -104,20 +104,20 @@
       }
     </header>
 
-    @for(related <- metadata.relatedIdentifiers.toSeq.flatten) {
-      @if(related.relationType == RelationType.IsPreviousVersionOf && related.relatedIdentifierType == RelatedIdentifierType.DOI) {
-        <div class="alert alert-warning" role="alert">
-          There is a newer version of this item available at:
-          <a href="@config.doiUrl(related.relatedIdentifier, prod)">@config.doiUrl(related.relatedIdentifier, prod)</a>
-        </div>
-      }
-    }
-
     @metadata.state.map { state =>
       @if(state != DoiState.Findable) {
         <div class="alert alert-warning" role="alert">
           <strong>@Messages("notice"): </strong>
           @Messages("dataCite.state.showingUnpublishedWarning")
+        </div>
+      }
+    }
+
+    @for(related <- metadata.relatedIdentifiers.toSeq.flatten) {
+      @if(related.relationType == RelationType.IsPreviousVersionOf && related.relatedIdentifierType == RelatedIdentifierType.DOI) {
+        <div class="alert alert-info" role="alert">
+          There is a newer version of this item available at:
+          <a href="@config.doiUrl(related.relatedIdentifier, prod)">@config.doiUrl(related.relatedIdentifier, prod)</a>
         </div>
       }
     }
@@ -212,24 +212,6 @@
   </article>
 
   <aside id="sidebar">
-    @if(metadata.hasVersions) {
-      <section class="sidebar-section" id="metadata-versions">
-        <header class="sidebar-header">
-          <h2>@Messages("dataCite.versions")</h2>
-        </header>
-        @metadata.relatedIdentifiers.toSeq.flatten.map { obj =>
-          @if(obj.relationType == RelationType.IsVersionOf && obj.relatedIdentifierType == RelatedIdentifierType.DOI) {
-            <div class="metadata-item">
-              <div class="metadata-value">
-                <a href="@config.doiUrl(obj.relatedIdentifier, prod)">
-                @config.doiUrl(obj.relatedIdentifier, prod)
-                </a>
-              </div>
-            </div>
-          }
-        }
-      </section>
-    }
 
     <section class="sidebar-section" id="metadata-details">
       <header class="sidebar-header">

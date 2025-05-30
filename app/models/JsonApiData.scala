@@ -13,9 +13,9 @@ case class JsonApiData(data: JsValue, meta: Option[JsValue] = None, links: Optio
 object JsonApiData {
   implicit val _writes: Writes[JsonApiData] = (
     (__ \ "data").write[JsValue] and
-    (__ \ "meta").writeNullable[JsValue] and
-    (__ \ "links").writeNullable[JsValue]
-  )(unlift(JsonApiData.unapply))
+      (__ \ "meta").writeNullable[JsValue] and
+      (__ \ "links").writeNullable[JsValue]
+    )(unlift(JsonApiData.unapply))
 
   implicit val _reads: Reads[JsonApiData] = Json.reads[JsonApiData]
 

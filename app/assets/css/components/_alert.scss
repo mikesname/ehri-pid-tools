@@ -7,7 +7,6 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 1rem;
-    background-color: var(--theme-bg-accent);
     border-radius: var(--border-radius);
     font-size: $font-size-md;
     line-height: 1.5rem;
@@ -24,6 +23,11 @@
         line-height: $font-size-xl;
         color: var(--theme-fg-accent);
     }
+}
+
+.alert.alert-info {
+  background-color: var(--theme-bg-info);
+  color: var(--theme-fg-info);
 }
 
 .alert.alert-warning {

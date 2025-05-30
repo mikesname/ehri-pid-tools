@@ -123,6 +123,7 @@ class DoiController @Inject()(
         logger.error(s"Invalid request body: $errors")
         immediate(jsonApiError(BadRequest, "errors.invalidRequest"))
     }
+
   }
 
   def update(prefix: String, suffix: String): Action[JsValue] = AuthAction.async(apiJson[JsValue]) { implicit request =>
