@@ -217,79 +217,80 @@
       <header class="sidebar-header">
         <h2>@Messages("pid.details")</h2>
       </header>
+      <div class="sidebar-section-content details-grid">
+        @metadata.state.map { state =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.state"):</div>
+            <div class="metadata-value">@Messages("dataCite.state." + state)</div>
+          </div>
+        }
 
-      @metadata.state.map { state =>
         <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.state"):</div>
-          <div class="metadata-value">@Messages("dataCite.state." + state)</div>
-        </div>
-      }
-
-      <div class="metadata-item">
-        <div class="metadata-label">@Messages("dataCite.types.resourceType"):</div>
-        <div class="metadata-value">
-          <span property="type">@Messages("dataCite.resourceTypeGeneral." + metadata.types.resourceTypeGeneral)</span>
-          @metadata.types.resourceType.map { rt =>
-            <span class="resource-type">
-              |
-              @Messages(rt)
-            </span>
-          }
-        </div>
-      </div>
-
-      @metadata.publisher.map { publisher =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.publisher"):</div>
-          <div class="metadata-value" property="publisher" typeof="Organization">
-            <!-- TODO: scheme info and PID -->
-            <span property="name">@publisher.name</span>
+          <div class="metadata-label">@Messages("dataCite.types.resourceType"):</div>
+          <div class="metadata-value">
+            <span property="type">@Messages("dataCite.resourceTypeGeneral." + metadata.types.resourceTypeGeneral)</span>
+            @metadata.types.resourceType.map { rt =>
+              <span class="resource-type">
+                |
+                @Messages(rt)
+              </span>
+            }
           </div>
         </div>
-      }
 
-      @metadata.publicationYear.map { year =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.publicationYear"):</div>
-          <div class="metadata-value" property="datePublished">@year</div>
-        </div>
-      }
+        @metadata.publisher.map { publisher =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.publisher"):</div>
+            <div class="metadata-value" property="publisher" typeof="Organization">
+              <!-- TODO: scheme info and PID -->
+              <span property="name">@publisher.name</span>
+            </div>
+          </div>
+        }
 
-      @metadata.formats.filter(_.nonEmpty).map { fmts =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.format"):</div>
-          <ul class="metadata-value metadata-value-list">
-          @fmts.map { fmt =>
-            <li class="format-item" property="format">@fmt</li>
-          }
-          </ul>
-        </div>
-      }
+        @metadata.publicationYear.map { year =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.publicationYear"):</div>
+            <div class="metadata-value" property="datePublished">@year</div>
+          </div>
+        }
 
-      @metadata.sizes.filter(_.nonEmpty).map { sizes =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.size"):</div>
-          <ul class="metadata-value metadata-value-list">
-          @sizes.map { size =>
-            <li class="size-item">@size</li>
-          }
-          </ul>
-        </div>
-      }
+        @metadata.formats.filter(_.nonEmpty).map { fmts =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.format"):</div>
+            <ul class="metadata-value metadata-value-list">
+            @fmts.map { fmt =>
+              <li class="format-item" property="format">@fmt</li>
+            }
+            </ul>
+          </div>
+        }
 
-      @metadata.language.map { lang =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.language"):</div>
-          <div class="metadata-value" property="language">@lang</div>
-        </div>
-      }
+        @metadata.sizes.filter(_.nonEmpty).map { sizes =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.size"):</div>
+            <ul class="metadata-value metadata-value-list">
+            @sizes.map { size =>
+              <li class="size-item">@size</li>
+            }
+            </ul>
+          </div>
+        }
 
-      @metadata.version.map { version =>
-        <div class="metadata-item">
-          <div class="metadata-label">@Messages("dataCite.version"):</div>
-          <div class="metadata-value" property="version">@version</div>
-        </div>
-      }
+        @metadata.language.map { lang =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.language"):</div>
+            <div class="metadata-value" property="language">@lang</div>
+          </div>
+        }
+
+        @metadata.version.map { version =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.version"):</div>
+            <div class="metadata-value" property="version">@version</div>
+          </div>
+        }
+      </div>
     </section>
 
     @if(metadata.rightsList.exists(_.nonEmpty)) {
@@ -297,17 +298,19 @@
         <header class="sidebar-header">
           <h2>@Messages("pid.rights")</h2>
         </header>
-        @metadata.rightsList.toSeq.flatten.map { obj =>
-          <div class="metadata-item">
-            <div class="metadata-value" property="license">
-              @obj.schemeUri.map { uri =>
-              <a href="@uri" target="_blank">@obj.rights</a>
-              }.getOrElse {
-                <span>@obj.rights</span>
-              }
+        <div class="sidebar-section-content">
+          @metadata.rightsList.toSeq.flatten.map { obj =>
+            <div class="metadata-item">
+              <div class="metadata-value" property="license">
+                @obj.schemeUri.map { uri =>
+                <a href="@uri" target="_blank">@obj.rights</a>
+                }.getOrElse {
+                  <span>@obj.rights</span>
+                }
+              </div>
             </div>
-          </div>
-        }
+          }
+        </div>
       </section>
     }
 
@@ -315,29 +318,29 @@
       <header class="sidebar-header">
         <h2>@Messages("pid.citeThisItem")</h2>
       </header>
-      <div class="citation-formats">
-        <div class="citation-result">
-          <div id="citation-text" class="citation-text"></div>
-        </div>
-        <div class="citation-controls">
-          <label for="citation-format-selector">@Messages("pid.citeThisItem.format")</label>
-          <select id="citation-format-selector">
-            <option value="apa" selected>APA</option>
-            <option value="mla">MLA</option>
-            <option value="chicago">Chicago</option>
-            <option value="harvard">Harvard</option>
-            <option value="bibtex">BibTeX</option>
-            <option value="ris">RIS</option>
-          </select>
-          <button id="copy-citation" class="button-primary">
-            <i class="fa fa-copy"></i>
-            Copy
-          </button>
-          <span id="citation-copied">@Messages("pid.citationCopied")</span>
+      <div class="sidebar-section-content">
+        <div class="citation-formats">
+          <div class="citation-result">
+            <div id="citation-text" class="citation-text"></div>
+          </div>
+          <div class="citation-controls">
+            <label for="citation-format-selector">@Messages("pid.citeThisItem.format")</label>
+            <select id="citation-format-selector">
+              <option value="apa" selected>APA</option>
+              <option value="mla">MLA</option>
+              <option value="chicago">Chicago</option>
+              <option value="harvard">Harvard</option>
+              <option value="bibtex">BibTeX</option>
+              <option value="ris">RIS</option>
+            </select>
+            <button id="copy-citation" class="button-primary">
+              <i class="fa fa-copy"></i>
+              Copy
+            </button>
+            <span id="citation-copied">@Messages("pid.citationCopied")</span>
+          </div>
         </div>
       </div>
-
-
     </section>
 
     @if(metadata.dates.exists(_.nonEmpty)) {
@@ -345,12 +348,14 @@
         <header class="sidebar-header">
           <h2>@Messages("dataCite.dates")</h2>
         </header>
-        @metadata.dates.toSeq.flatten.map { obj =>
-          <div class="metadata-item">
-            <div class="metadata-label">@Messages("dataCite.dateType." + obj.dateType):</div>
-            <div class="metadata-value" property="@datePropertyAttr(obj.dateType)">@obj.date</div>
-          </div>
-        }
+        <div class="sidebar-section-content details-grid">
+          @metadata.dates.toSeq.flatten.map { obj =>
+            <div class="metadata-item">
+              <div class="metadata-label">@Messages("dataCite.dateType." + obj.dateType):</div>
+              <div class="metadata-value" property="@datePropertyAttr(obj.dateType)">@obj.date</div>
+            </div>
+          }
+        </div>
       </section>
     }
   </aside>
