@@ -48,6 +48,7 @@
 
   <logger name="play" level="INFO"/>
   <logger name="application" level="DEBUG"/>
+<!--  <logger name="play.api.libs.ws.ahc.cache" level="TRACE" />-->
 
   <root level="WARN">
     <appender-ref ref="ASYNCFILE"/>
