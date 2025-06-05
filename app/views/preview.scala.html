@@ -2,23 +2,23 @@
 
 <div class="target-card">
   <div class="target-img">
-    <a href="@url">
-      @if(image.nonEmpty) {
-        <img src="@image" alt="Image for item">
-      } else {
-        <img src="@routes.Assets.versioned("images/target-image-placeholder.svg")" alt="Image for item">
+    <a href="@url" aria-label="@Messages("target.link.accessibility")">
+    @if(image.nonEmpty) {
+      <img src="@image" alt="Image for item">
+    } else {
+      <img src="@routes.Assets.versioned("images/target-image-placeholder.svg")" alt="Image for item">
       }
     </a>
   </div>
   <div class="target-info">
-      <header class="target-header">
-        <h2 class="target-title" property="name">
-          <a href="@url">@title</a>
-        </h2>
-        <h3><a href="@url">@url</a></h3>
-      </header>
-      <div class="target-description">
-        @Html(desc)
-      </div>
+    <header class="target-header">
+      <a href="@url" aria-label="@Messages("target.link.accessibility")">
+        <h2 class="target-title" property="name">@title</h2>
+      </a>
+      <h3><a href="@url">@url</a></h3>
+    </header>
+    <a href="@url" class="target-description" aria-label="@Messages("target.link.accessibility")">
+      @Html(desc)
+    </a>
   </div>
 </div>

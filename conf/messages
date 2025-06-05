@@ -19,6 +19,8 @@ pid.citationCopied=Citation copied!
 pid.details=Details
 pid.rights=Rights
 
+target.link.accessibility=Click to read the item.
+
 dataCite.state=DOI State
 dataCite.state.draft=Draft
 dataCite.state.registered=Registered

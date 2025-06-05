@@ -291,8 +291,10 @@
   font-size: 2rem;
 }
 
+
 .target-card {
   @include card();
+  box-shadow: $box-shadow-sm;
   padding: $space-md;
 
   display: grid;
@@ -320,11 +322,13 @@
   }
   .target-description {
     grid-area: description;
+    color: inherit;
+    display: block;
   }
 
   h1, h2, h3, h4 {
     margin-top: 0;
-    margin-bottom: $space-sm;
+    margin-bottom: $space-md;
   }
 
   h3 > a {
