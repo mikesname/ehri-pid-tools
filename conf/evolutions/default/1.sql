@@ -11,8 +11,8 @@ CREATE TABLE pids (
     target text NOT NULL,                                           -- the URL to which the PID resolves
     created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,  -- when the PID was created
     updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,  -- when the PID was last updated
-    client varchar(100) NOT NULL,                                    -- the user who created the PID
-    UNIQUE (ptype, value)                                      -- ensure unique combination of type and value
+    client varchar(100) NOT NULL,                                   -- the user who created the PID
+    UNIQUE (ptype, value)                                           -- ensure unique combination of type and value,
 );
 
 CREATE TABLE tombstones (
@@ -26,6 +26,8 @@ CREATE TABLE tombstones (
 
 -- Composite index for lookups by type and value
 CREATE INDEX pids_type_value_idx ON pids (ptype, value);
+CREATE INDEX pids_type_target_idx ON pids (ptype, target);
+CREATE INDEX pids_target_value_idx ON pids (target, value);
 
 -- Index for quick lookups by target URL
 CREATE INDEX pids_target_idx ON pids (target);

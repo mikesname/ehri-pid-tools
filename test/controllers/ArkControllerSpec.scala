@@ -94,7 +94,7 @@ class ArkControllerSpec extends AppSpec with DatabaseSupport with MockitoSugar {
       )
 
       // We have to create a new application here and override bind a
-      // mock DoiService that throws a DoiExistsException
+      // mock ArkService
       val mockedApp = newAppBuilder(Seq(
         api.inject.bind[ArkService].toInstance(mockArkService),
       )).build()
@@ -110,6 +110,22 @@ class ArkControllerSpec extends AppSpec with DatabaseSupport with MockitoSugar {
       val out = contentAsJson(result)
       out \ "data" \ "id" mustBe JsDefined(JsString("10.12345/abcd-efgh"))
       out \ "meta" \ "target" mustBe JsDefined(JsString("https://example.com/resource"))
+    }
+
+    "allow registering two ARKs for the same target" in {
+      val payload = Json.obj(
+        "data" -> Json.obj("attributes" -> JsObject.empty),
+        "meta" -> Json.obj(
+          "target" -> "https://example.com/pid-test-4" // This target is already registered in the fixtures
+        )
+      )
+
+      val controller = app.injector.instanceOf[ArkController]
+      val request = FakeRequest(POST, routes.ArkController.register().url)
+        .withHeaders("Accept" -> "application/vnd.api+json", "Authorization" -> basicAuthString)
+        .withJsonBody(payload)
+      val result = call(controller.register(), request)
+      status(result) mustBe CREATED
     }
 
     "handle (hopefully rare) PID service collisions gracefully" in {

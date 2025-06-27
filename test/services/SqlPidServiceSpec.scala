@@ -43,10 +43,17 @@ class SqlPidServiceSpec extends AppSpec with DatabaseSupport {
     }
 
     "error on creating existing items" in {
+      val doi = "10.14454/fxws-0523"
       val exception = intercept[PidExistsException] {
-        await(pidService.create(PidType.DOI, "10.14454/fxws-0523", "https://foo.bar/baz", "system"))
+        await(pidService.create(PidType.DOI, doi, "https://foo.bar/baz", "system"))
       }
-      exception.getMessage must include("already exists")
+      exception.getMessage must include(doi)
+    }
+
+    "allow creating multiple of the same PID type for the same target" in {
+      val url = "https://example.com/pid-test-1"
+      val newPid = await(pidService.create(PidType.DOI, "10.1234/5678", url, "system"))
+      newPid.target mustBe url
     }
 
     "update existing items" in {

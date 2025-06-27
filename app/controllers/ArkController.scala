@@ -43,7 +43,11 @@ class ArkController @Inject()(
       case Some(pid) =>
         render {
           case Accepts.Html() => Ok(pid.value)
-          case _ => Ok(Json.toJson(pid.value))
+          case _ => Ok(Ark(
+            metadata = ArkMetadata(Some(pid.value)),
+            target = pid.target,
+            tombstone = pid.tombstone
+          ))
         }
       case None => render {
         case Accepts.Html() => NotFound(views.html.errors.notFound("ARK not found"))

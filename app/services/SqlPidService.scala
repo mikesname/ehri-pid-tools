@@ -36,7 +36,9 @@ case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit
       SQL"""SELECT p.ptype, p.value, p.target, t.client, t.reason, t.deleted_at
            FROM pids p
            LEFT JOIN tombstones t ON p.id = t.pid_id
-           WHERE p.ptype = $ptype::pid_type AND p.target = $target"""
+           WHERE p.ptype = $ptype::pid_type AND p.target = $target
+           ORDER BY p.created_at
+           LIMIT 1"""
         .as(pidParser.singleOpt)
     }
   }(ec)
@@ -49,7 +51,14 @@ case class SqlPidService @Inject()(db: Database, config: Configuration)(implicit
           .as(pidParser.single)
       } catch {
         case e: PSQLException if e.getSQLState == "23505" =>
-          throw PidExistsException(s"PID with type $ptype and value $value already exists.")
+          if (e.getMessage.contains("pids_value_key")) {
+            throw PidExistsException(s"PID with type $ptype and value '$value' already exists.")
+          } else if (e.getMessage.contains("pids_ptype_target_key")) {
+            throw PidExistsException(s"PID with type $ptype and target '$target' already exists.")
+          } else {
+            e.printStackTrace()
+            throw e // rethrow unexpected PSQLException
+          }
       }
     }
   }(ec)
