@@ -1,4 +1,4 @@
-@(pid: Pid, metadata: DataCiteMetadata, prod: Boolean = false)(implicit request: RequestHeader, messages: Messages, config: AppConfig)
+@(pid: Pid, metadata: DataCiteMetadata, prod: Boolean = false)(implicit request: RequestHeader, messages: Messages, profile: DoiProfile, config: AppConfig)
 
 @headingIfNotEmpty(headingCode: String)(html: Html) = {
   @if(!html.body.trim.isEmpty) {
@@ -84,7 +84,7 @@
       </span>
     </div>
     <div class="doi-actions">
-      <a href="#" id="doi-share-action" class="button-primary">Share</a>
+      <!--<a href="#" id="doi-share-action" class="button-primary">Share</a>-->
     </div>
   </section>
 

@@ -1,6 +1,6 @@
 package controllers
 
-import models.RelatedIdentifierType
+import models.{DoiProfile, RelatedIdentifierType}
 import play.api.Configuration
 
 import javax.inject.Inject
@@ -8,9 +8,6 @@ import javax.inject.Inject
 case class AppConfig @Inject()(config: Configuration) {
 
   def showHidden: Boolean = config.get[Boolean]("doi.showHidden")
-
-  def doiPrefix: String =
-    config.get[String]("doi.prefix")
 
   /**
    * Resolve a DOI.
@@ -20,10 +17,10 @@ case class AppConfig @Inject()(config: Configuration) {
    *             or the global one
    * @return a DOI URL
    */
-  def doiUrl(doi: String, prod: Boolean = true): String =
-    if (prod) s"https://doi.org/$doi" else s"${config.get[String]("doi.resolverUrl")}/$doi"
+  def doiUrl(doi: String, prod: Boolean = true)(implicit profile: DoiProfile): String =
+    if (prod) s"https://doi.org/$doi" else s"${profile.resolver}/$doi"
 
-  def resolvePid(pid: String, pidType: RelatedIdentifierType.Value, staging: Boolean = true): Option[String] = pidType match {
+  def resolvePid(pid: String, pidType: RelatedIdentifierType.Value, staging: Boolean = true)(implicit profile: DoiProfile): Option[String] = pidType match {
     case RelatedIdentifierType.DOI => Some(doiUrl(pid, staging))
     case RelatedIdentifierType.ARK => Some(s"https://n2t.net/$pid")
     case _ => None

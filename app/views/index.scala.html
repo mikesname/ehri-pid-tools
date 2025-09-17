@@ -2,12 +2,19 @@
 
 @layout.base("Welcome") {
   <section class="page-content">
-    <h1>EHRI PID Service</h1>
+    <h1>EHRI Persistent Identifiers</h1>
     <p>
-      Welcome to the EHRI PID service. This service provides persistent identifiers (PIDs) for digital objects. There isn't much
-      here at the moment except a <a href="@routes.DoiController.index()">list</a> of some test DOIs.
-
-        And <a href="@routes.ArkController.index()">some ARKs</a>.
+        This service displays metadata about articles and other outputs created by
+        the <a href="https://www.ehri-project.eu">European Holocaust Research Infrastructure (EHRI)</a>
+          that have been assigned persistent identifiers (PIDs for short). EHRI currently uses
+          <a href="https://datacite.org">DataCite</a> to register <a href="@controllers.routes.DoiController.index()">Digital Object Identifiers
+          (DOIs)</a> for articles on the <a href="https://blog.ehri-project.eu">EHRI Document Blog</a>,
+          with more outputs to follow as per the
+          <a href="https://portal.ehri-project.eu/help/pid-roadmap">EHRI PID Roadmap</a>.
+    </p>
+    <p>
+      <strong>Please note: </strong> This service is currently under construction and will eventually contain
+      information about EHRI PID policies.
     </p>
   </section>
 }

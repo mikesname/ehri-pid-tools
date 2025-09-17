@@ -115,6 +115,10 @@ body {
 
   --padding-page-content-v: max(2rem, min(8rem, 10vw));
   --padding-page-content-h: 18vw;
+
+  @media(min-width: $breakpoint-wide) {
+    --margin-page-h: 20%;
+  }
 }
 
 html {

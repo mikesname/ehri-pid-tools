@@ -1,47 +1,52 @@
-@(doiMetadataList: DoiMetadataList, prod: Boolean = false)(implicit request: RequestHeader, messages: Messages, config: AppConfig)
+@(doiMetadataList: DoiMetadataList, prod: Boolean = false)(implicit request: RequestHeader, messages: Messages, profile: DoiProfile, config: AppConfig)
 
 @views.html.layout.base("DOI List") {
   <div class="page-content">
+    <header>
+      <h1>@Messages("doi.list")</h1>
+    </header>
     <article class="search-list">
-      <ul class="doi-list">
-      @for(doiMetadata <- doiMetadataList.dois) {
-        @defining(doiMetadata.asDataCiteMetadata) { dcm =>
-          <li class="doi-list-item" id="doi-@doiMetadata.id">
-            <header>
-              <h3 class="doi-heading">
-                <a href="@routes.DoiController.get(doiMetadata.prefix, doiMetadata.suffix)">
-                @dcm.title
-                </a>
-                <span class="doi-state-container doi-state-@doiMetadata.state">
-                  <span class="doi-state-icon"></span>
-                  <span class="doi-state-text">
-                  @doiMetadata.state
+      @if(doiMetadataList.items.nonEmpty) {
+        <ul class="doi-list">
+        @for(doiMetadata <- doiMetadataList.items) {
+          @defining(doiMetadata.asDataCiteMetadata) { dcm =>
+            <li class="doi-list-item" id="doi-@doiMetadata.id">
+              <header>
+                <h3 class="doi-heading">
+                  <a href="@routes.DoiController.get(doiMetadata.prefix, doiMetadata.suffix)">
+                  @dcm.title
+                  </a>
+                  <span class="doi-state-container doi-state-@doiMetadata.state">
+                    <span class="doi-state-icon"></span>
+                    <span class="doi-state-text">
+                    @doiMetadata.state
+                    </span>
                   </span>
-                </span>
-              </h3>
-            </header>
-            <div class="doi-list-item-body">
-              <div class="metadata-item">
-                <div class="metadata-label sr-only">
-                  @Messages("dataCite.creators")
+                </h3>
+              </header>
+              <div class="doi-list-item-body">
+                <div class="metadata-item">
+                  <div class="metadata-label sr-only">
+                    @Messages("dataCite.creators")
+                </div>
+                @views.html.dois.common.creatorList(dcm.creators)
               </div>
-              @views.html.dois.common.creatorList(dcm.creators)
+                <div class="doi-list-item-body-details">
+                  @doiMetadata.id.map(id => config.doiUrl(id, prod)).map { doiUrl =>
+                    <span property="identifier">
+                      <a href="@doiUrl">@doiUrl</a>
+                    </span>
+                  }
+                </div>
             </div>
-              <div class="doi-list-item-body-details">
-                @doiMetadata.id.map(id => config.doiUrl(id, prod)).map { doiUrl =>
-                  <span property="identifier">
-                    <a href="@doiUrl">@doiUrl</a>
-                  </span>
-                }
-              </div>
-          </div>
+          }
         }
-      }
-      </ul>
-      @if(doiMetadataList.totalPages > 1) {
-        <div class="pagination">
-        @Messages("pagination.totalPages", doiMetadataList.totalPages)
-        </div>
+        </ul>
+        @if(doiMetadataList.totalPages > 1) {
+          @views.html.common.pagination(doiMetadataList)
+        }
+      } else {
+        <h2>@Messages("doi.list.noneFound")</h2>
       }
     </article>
     <aside id="sidebar">

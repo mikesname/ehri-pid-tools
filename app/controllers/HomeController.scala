@@ -22,8 +22,4 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   def index(): Action[AnyContent] = Action { implicit request: RequestHeader =>
     Ok(views.html.index())
   }
-
-  def versioning(): Action[AnyContent] = Action { implicit request =>
-    ???
-  }
 }

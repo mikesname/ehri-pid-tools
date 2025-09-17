@@ -3,7 +3,9 @@ package models
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
-case class DoiMetadataList(dois: Seq[DoiMetadata], total: Int, page: Int, totalPages: Int)
+case class DoiMetadataList(items: Seq[DoiMetadata], total: Int, page: Int, totalPages: Int) extends Page[DoiMetadata] {
+  override def numPages: Int = totalPages
+}
 
 object DoiMetadataList {
   implicit def _reads: Reads[DoiMetadataList] = (

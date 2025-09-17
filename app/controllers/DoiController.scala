@@ -1,12 +1,12 @@
 package controllers
 
 import auth.AuthAction
-import models.{Doi, DoiMetadata, DoiState, JsonApiData, JsonApiError, Pid, PidType, TombstoneReason}
+import models.{Doi, DoiMetadata, DoiProfile, DoiState, JsonApiData, JsonApiError, ListParams, Pid, PidType, TombstoneReason}
 import play.api.i18n.{I18nSupport, Messages}
 import play.api.libs.json.JsError.toJson
 import play.api.libs.json.{JsError, JsSuccess, JsValue, Json, Reads}
 import play.api.mvc._
-import services.{DoiExistsException, DoiNotFound, DoiService, PidExistsException, PidService}
+import services.{DoiExistsException, DoiListParams, DoiNotFound, DoiService, DoiServiceHandle, PidExistsException, PidService}
 
 import javax.inject._
 import scala.concurrent.ExecutionContext
@@ -18,12 +18,22 @@ import scala.concurrent.Future.{successful => immediate}
 @Singleton
 class DoiController @Inject()(
   val controllerComponents: ControllerComponents,
-  doiService: DoiService,
+  doiServiceHandle: DoiServiceHandle,
   pidService: PidService,
   AuthAction: AuthAction,
 )(implicit ec: ExecutionContext, appConfig: AppConfig) extends BaseController with I18nSupport {
 
   private val logger = play.api.Logger(getClass)
+
+  private implicit def doiProfile(implicit req: RequestHeader): DoiProfile = {
+    val id = req.getQueryString("_profile").getOrElse("default")
+    DoiProfile.fromConfig(id, appConfig.config)
+  }
+
+  private def doiService(implicit req: RequestHeader): DoiService =
+    doiServiceHandle.forProfile(doiProfile(req))
+
+  private def doiPrefix(implicit req: RequestHeader) = doiProfile.prefix
 
   private def jsonApiError(status: Status, message: String, args: String*)(implicit request: RequestHeader): Result = {
     val errorObj = JsonApiError(Messages(message, args: _*), status = Some(status.header.status.toString))
@@ -52,8 +62,8 @@ class DoiController @Inject()(
   /**
    * Renders the list of DOIs.
    */
-  def index(): Action[AnyContent] = Action.async { implicit request =>
-    doiService.listDoiMetadata(appConfig.doiPrefix).map { doiMetadata =>
+  def index(params: ListParams): Action[AnyContent] = Action.async { implicit request =>
+    doiService.listDoiMetadata(doiPrefix, DoiListParams(params)).map { doiMetadata =>
       Ok(views.html.dois.list(doiMetadata))
     }
   }
@@ -98,9 +108,8 @@ class DoiController @Inject()(
     request.body.validate[Doi] match {
       case JsSuccess(Doi(metadata, target, _), _) =>
         val newSuffix = doiService.generateSuffix()
-        val prefix = appConfig.doiPrefix
-        val newDoi = s"$prefix/$newSuffix"
-        val serviceUrl = routes.DoiController.get(prefix, newSuffix).absoluteURL()
+        val newDoi = s"$doiPrefix/$newSuffix"
+        val serviceUrl = routes.DoiController.get(doiPrefix, newSuffix).absoluteURL()
         val newMetadata = metadata.withDoi(newDoi).withUrl(serviceUrl)
 
         logger.debug(s"Registering new DOI with '$newDoi' and URL: $serviceUrl")

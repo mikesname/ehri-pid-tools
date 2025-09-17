@@ -1,0 +1,30 @@
+
+@import "../variables";
+@import "../mixins";
+
+nav > .pagination {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  > li > a {
+    padding: $space-sm $space-md;
+  }
+
+  > li.active a {
+    font-weight: var(--font-weight-bolder);
+  }
+
+  > li > a:hover {
+    background-color: var(--theme-bg-accent);
+  }
+
+  > li.disabled > a {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+}

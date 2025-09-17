@@ -17,7 +17,7 @@ abstract class AppSpec extends PlaySpec with GuiceOneAppPerTest with DefaultAwai
   // You can add any common setup or utility methods here.
 
   private val config = Configuration.load(Environment.simple())
-  private val apiBaseUrl = config.get[String]("doi.api.baseUrl")
+  private val apiBaseUrl = config.get[String]("doi.default.api.baseUrl")
 
   protected def newAppBuilder(overrides: GuiceableModule*): GuiceApplicationBuilder = {
     import play.api.inject.bind

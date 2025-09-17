@@ -83,34 +83,6 @@ class ArkController @Inject()(
     }
   }
 
-  def register(): Action[JsValue] = AuthAction.async(apiJson[JsValue]) { implicit request =>
-    request.body.validate[Ark] match {
-      case JsSuccess(Ark(metadata, target, _), _) =>
-        val newSuffix = arkService.generateSuffix()
-        val prefix = appConfig.doiPrefix
-        val newArk = s"$prefix/$newSuffix"
-        val serviceUrl = routes.DoiController.get(prefix, newSuffix).absoluteURL()
-        val newMetadata = metadata.withArk(newArk)
-
-        logger.debug(s"Registering new ARK with '$newArk' and URL: $serviceUrl")
-
-        (for {
-          pid <- pidService.create(PidType.DOI, newArk, target, request.clientId)
-        } yield Created(Ark(newMetadata, target, pid.tombstone)))
-          .recover {
-            case _: PidExistsException =>
-              jsonApiError(UnprocessableEntity, "errors.ark.collisionError")
-            case e =>
-              logger.error(s"Failed to register DOI: ${e.getMessage}")
-              jsonApiError(InternalServerError, "errors.ark.registrationFailed")
-          }
-      case JsError(errors) =>
-        logger.error(s"Invalid request body: $errors")
-        immediate(jsonApiError(BadRequest, "errors.invalidRequest"))
-    }
-
-  }
-
   def update(prefix: String, suffix: String): Action[JsValue] = AuthAction.async(apiJson[JsValue]) { implicit request =>
     request.body.validate[Ark] match {
       case JsSuccess(Ark(metadata, target, _), _) =>

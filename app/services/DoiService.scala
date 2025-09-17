@@ -1,17 +1,37 @@
 package services
 
 import com.google.inject.ImplementedBy
-import models.{DoiMetadata, DoiMetadataList}
+import models.{DoiMetadata, DoiMetadataList, DoiProfile, ListParams}
 
 import scala.concurrent.Future
 
 
-@ImplementedBy(classOf[WsDoiService])
+@ImplementedBy(classOf[WsDoiServiceHandle])
+trait DoiServiceHandle {
+  def forProfile(profile: DoiProfile): DoiService
+}
+
+case class DoiListParams(
+  query: Option[String] = None,
+  page: Int = 1,
+  size: Int = 20,
+  sort: Option[String] = None,
+)
+
+object DoiListParams {
+  def apply(lp: ListParams): DoiListParams = DoiListParams(
+    query = lp.query,
+    page = lp.page,
+    size = lp.limit,
+    sort = lp.sort
+  )
+}
+
 trait DoiService {
 
   val DOI_ALPHABET = "0123456789abcdefghjkmnpqrstuvwxyz"
 
-  def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 1000, sort: String = "-created"): Future[DoiMetadataList]
+  def listDoiMetadata(prefix: String, params: DoiListParams): Future[DoiMetadataList]
 
   def getDoiMetadata(doi: String): Future[DoiMetadata]
 

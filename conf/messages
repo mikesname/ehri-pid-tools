@@ -1,5 +1,16 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
-doi.doi=DOI: {}
+
+index.name=Home
+index.title=EHRI Persistent Identifiers
+index.message.intro=This service displays metadata about articles and other outputs created by \
+ the {0} that have been assigned persistent \
+ identifiers (PIDs for short). EHRI currently uses {1} to register Digital Object Identifiers \
+ (DOIs) for articles on the {2}, with more outputs to follow as per the {3}.
+index.message.intro.link0=European Holocaust Research Infrastructure (EHRI)
+index.message.intro.link1=DataCite
+index.message.intro.link2=EHRI Document Blog
+index.message.intro.link3=EHRI PID Roadmap
+index.message.links=For more EHRI outputs, see these sites:
 
 error.invalidToken=The token is missing, invalid or expired.
 errors.notFound=404 Not Found
@@ -35,6 +46,10 @@ pid.citationCopied=Citation copied!
 pid.details=Details
 pid.rights=Rights
 
+doi.doi=DOI: {}
+doi.list=Registered DOIs
+doi.list.noneFound=No DOIs found
+
 target.link.accessibility=Click to read the item.
 
 dataCite.state=DOI State
@@ -64,7 +79,6 @@ dataCite.descriptionType.SeriesInformation=Series Information
 dataCite.descriptionType.TableOfContents=Table of Contents
 dataCite.descriptionType.TechnicalInfo=Technical Information
 dataCite.descriptionType.Other=Other Descriptive Information
-
 
 dataCite.description=Description
 dataCite.versions=Versions

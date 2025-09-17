@@ -2,12 +2,15 @@ package services
 
 import helpers.{AppSpec, resourceAsJson}
 import mockws.MockWSHelpers
-import models.{DoiMetadata, DoiMetadataList, JsonApiData}
+import models.{DoiMetadata, DoiMetadataList, DoiProfile, JsonApiData}
+import play.api.Configuration
 
 import scala.language.implicitConversions
 
 class WsDoiServiceSpec extends AppSpec with MockWSHelpers {
-  private def wsDoiService = inject[WsDoiService]
+  private def configuration = inject[Configuration]
+  private def wsDoiServiceHandle = inject[WsDoiServiceHandle]
+  private def wsDoiService = wsDoiServiceHandle.forProfile(DoiProfile.fromConfig("default", configuration))
 
   "WsDoiService" should {
     "return a list of DOIs" in {

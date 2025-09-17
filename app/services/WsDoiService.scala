@@ -1,6 +1,6 @@
 package services
 
-import models.{DoiMetadata, DoiMetadataList, JsonApiData, JsonApiError}
+import models.{DoiMetadata, DoiMetadataList, DoiProfile, JsonApiData, JsonApiError}
 import org.apache.pekko.util.ByteString
 import play.api.Configuration
 import play.api.http.Status
@@ -12,6 +12,17 @@ import java.util.Base64
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
+/**
+ * Class for instantiating a DOI service with a given profile.
+ *
+ * @param ws     the web service instance
+ * @param config the config instance
+ * @param ec     an execution context
+ */
+case class WsDoiServiceHandle @Inject()(ws: WSClient, config: Configuration)(implicit ec: ExecutionContext) extends DoiServiceHandle {
+  override def forProfile(profile: DoiProfile): DoiService = WsDoiService(profile, ws, config)
+}
+
 object WsDoiService {
   implicit val apiResponseWritable: BodyWritable[JsonApiData] = BodyWritable(
     (jsonApi: JsonApiData) => InMemoryBody(ByteString(Json.toBytes(jsonApi.data))),
@@ -19,30 +30,31 @@ object WsDoiService {
   )
 }
 
-case class WsDoiService @Inject()(ws: WSClient, config: Configuration)(implicit ec: ExecutionContext) extends DoiService {
+case class WsDoiService(profile: DoiProfile, ws: WSClient, config: Configuration)(implicit ec: ExecutionContext) extends DoiService {
 
-  private val doiBaseUrl = config.get[String]("doi.api.baseUrl")
+  private def doiBaseUrl: String = profile.apiBaseUrl
 
-  override def listDoiMetadata(prefix: String, page: Int = 1, size: Int = 1000, sort: String = "-created"): Future[DoiMetadataList] = {
-    val params = Map(
+  override def listDoiMetadata(prefix: String, params: DoiListParams): Future[DoiMetadataList] = {
+    val paramMap = Map(
       "prefix" -> prefix,
-      "page[number]" -> page.toString,
-      "page[size]" -> size.toString,
-      "sort" -> sort
+      "query" -> params.query.getOrElse(""),
+      "page[number]" -> params.page.toString,
+      "page[size]" -> params.size.toString,
+      "sort" -> params.sort.getOrElse("-created")
     )
-    ws.url(doiBaseUrl)
+    ws.url(profile.apiBaseUrl)
       .withHttpHeaders(headers.toSeq: _*)
-      .withQueryStringParameters(params.toSeq: _*).get().map { response =>
+      .withQueryStringParameters(paramMap.toSeq: _*).get().map { response =>
         parseResponse[DoiMetadataList](response)
       }
   }
 
   override def getDoiMetadata(doi: String): Future[DoiMetadata] = {
     ws.url(s"$doiBaseUrl/$doi")
-        .withHttpHeaders(allHeaders.toSeq: _*).get().map { response =>
-      val jsonApiData = parseResponse[JsonApiData](response)
-      jsonApiData.data.as[DoiMetadata]
-    }
+      .withHttpHeaders(allHeaders.toSeq: _*).get().map { response =>
+        val jsonApiData = parseResponse[JsonApiData](response)
+        jsonApiData.data.as[DoiMetadata]
+      }
   }
 
   override def registerDoi(metadata: DoiMetadata): Future[DoiMetadata] = {
@@ -82,8 +94,8 @@ case class WsDoiService @Inject()(ws: WSClient, config: Configuration)(implicit 
 
   private def providerAuth: String = {
     // Get a base64 encoded concatenation of the repository_id and repository_secret
-    val repositoryId = config.get[String]("doi.api.repositoryId")
-    val repositorySecret = config.get[String]("doi.api.repositorySecret")
+    val repositoryId = profile.repositoryId
+    val repositorySecret = profile.repositorySecret
     Base64.getEncoder.encodeToString(s"$repositoryId:$repositorySecret".getBytes("UTF-8"))
   }
 
@@ -96,10 +108,10 @@ case class WsDoiService @Inject()(ws: WSClient, config: Configuration)(implicit 
       }
     } else {
       val errorObj = response.json.asOpt[JsonApiError]
-     if (response.status == Status.NOT_FOUND) {
+      if (response.status == Status.NOT_FOUND) {
         throw DoiNotFound("errors.doi.notFound", Some(response.json))
       } else if (response.status == Status.UNPROCESSABLE_ENTITY
-          && errorObj.exists(_.firstMessage.contains("This DOI has already been taken"))) {
+        && errorObj.exists(_.firstMessage.contains("This DOI has already been taken"))) {
         throw DoiExistsException("errors.doi.collisionError", Some(response.json))
       } else {
         throw DoiServiceException("errors.doi.exception", response.status, response.json)

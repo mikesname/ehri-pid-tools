@@ -9,7 +9,7 @@ import play.api
 import play.api.libs.json.{JsDefined, JsObject, JsString, Json}
 import play.api.test.Helpers._
 import play.api.test._
-import services.{DoiExistsException, DoiService, PidExistsException, PidService}
+import services.{DoiExistsException, DoiService, DoiServiceHandle, PidExistsException, PidService}
 
 import scala.concurrent.Future
 
@@ -109,9 +109,11 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport with MockitoSugar {
       when(mockDoiService.registerDoi(any())).thenReturn(
         Future.failed(DoiExistsException("DOI already exists"))
       )
+      val mockDoiServiceHandle = mock[DoiServiceHandle]
+      when(mockDoiServiceHandle.forProfile(any())).thenReturn(mockDoiService)
 
       val mockedApp = newAppBuilder(Seq(
-        api.inject.bind[DoiService].toInstance(mockDoiService)
+        api.inject.bind[DoiServiceHandle].toInstance(mockDoiServiceHandle)
       )).build()
 
       val controller = mockedApp.injector.instanceOf[DoiController]
@@ -146,6 +148,8 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport with MockitoSugar {
       when(mockDoiService.registerDoi(any())).thenReturn(
         Future.successful(payload.as[models.JsonApiData].data.as[DoiMetadata])
       )
+      val mockDoiServiceHandle = mock[DoiServiceHandle]
+      when(mockDoiServiceHandle.forProfile(any())).thenReturn(mockDoiService)
       // And the PID service to throw an error...
       val mockPidService = mock[PidService]
       when(mockPidService.create(any(), any(), any(), any())).thenReturn(
@@ -155,7 +159,7 @@ class DoiControllerSpec extends AppSpec with DatabaseSupport with MockitoSugar {
       // We have to create a new application here and override bind a
       // mock DoiService that throws a DoiExistsException
       val mockedApp = newAppBuilder(Seq(
-        api.inject.bind[DoiService].toInstance(mockDoiService),
+        api.inject.bind[DoiServiceHandle].toInstance(mockDoiServiceHandle),
         api.inject.bind[PidService].toInstance(mockPidService)
       )).build()
 
