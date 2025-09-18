@@ -93,7 +93,7 @@ class DoiController @Inject()(
             throw DoiNotFound(Messages("errors.doi.notFound"))
           // If we're returning HTML and hidden items are visible, show the page:
           case Accepts.Html() =>
-            retStatus(views.html.dois.show(pid, doiMetadata.asDataCiteMetadata))
+            retStatus(views.html.dois.show(pid, doiMetadata.asDataCiteMetadata, prod = !doiProfile.showHidden))
           // Otherwise, show metadata...
           case _ =>
             retStatus(Doi(doiMetadata, pid.target, pid.tombstone))

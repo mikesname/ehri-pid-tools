@@ -59,6 +59,12 @@ package object mocks {
         Results.Ok("<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='blue'/></svg>")
           .withHeaders("Content-Type" -> "image/svg+xml")
       }
+      case (GET, "https://example.com/preview-test2") => Action {
+        Results.Ok(resourceAsString("preview-test2.html"))
+      }
+      case (HEAD, "https://example.com/preview-test-image2.svg") => Action {
+        Results.NotFound
+      }
     }
   }
 }

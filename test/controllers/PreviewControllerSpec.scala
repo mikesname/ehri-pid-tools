@@ -14,6 +14,7 @@ class PreviewControllerSpec extends AppSpec {
 
   private def controller = inject[PreviewController]
   private val testUrl = "https://example.com/preview-test"
+  private val testUrl2 = "https://example.com/preview-test2"
 
   "PreviewController GET" should {
 
@@ -26,6 +27,17 @@ class PreviewControllerSpec extends AppSpec {
       val html = contentAsString(result)
       html must include ("Preview Generator Test Page | Nice Site")
       html must include ("https://example.com/preview-test-image.svg")
+    }
+
+    "deal with missing images" in {
+      val request = FakeRequest(GET, routes.PreviewController.preview(testUrl2).url)
+      val result = controller.preview(testUrl2).apply(request)
+      status(result) mustBe OK
+      contentType(result) mustBe Some("text/html")
+
+      val html = contentAsString(result)
+      html must not include ("https://example.com/preview-test-image2.svg")
+
     }
   }
 }

@@ -6,10 +6,11 @@ import play.api.cache.AsyncCacheApi
 import play.api.i18n.I18nSupport
 import play.api.libs.ws.WSClient
 import play.api.mvc._
+import play.api.{Configuration, Logger}
 import play.twirl.api.Html
 
 import javax.inject._
-import scala.concurrent.duration.DurationInt
+import scala.concurrent.duration.Duration
 import scala.concurrent.{ExecutionContext, Future}
 
 /**
@@ -20,13 +21,22 @@ import scala.concurrent.{ExecutionContext, Future}
 class PreviewController @Inject()(
   val controllerComponents: ControllerComponents,
   ws: WSClient,
-  cache: AsyncCacheApi)(implicit ec: ExecutionContext) extends BaseController with I18nSupport {
+  cache: AsyncCacheApi,
+  config: Configuration
+)(implicit ec: ExecutionContext) extends BaseController with I18nSupport {
+
+  private val logger = Logger(classOf[PreviewController])
 
   private def checkImage(url: String): Future[Boolean] = {
     ws.url(url).head().map { response =>
-      response.status == 200
+      if (response.status != 200) {
+        logger.debug(s"Unexpected preview image URL response ($url): ${response.status}")
+        false
+      } else true
     }.recover {
-      case _: Exception => false // If we can't access the image, return false
+      case e: Exception =>
+        logger.debug(s"Error validating preview image URL ($url): ${e.getMessage}")
+        false // If we can't access the image, return false
     }
   }
 
@@ -51,7 +61,7 @@ class PreviewController @Inject()(
         views.html.preview(canonicalUrl, fullTitle, description, image.filter( _ => imageOk))
       }
     }
-    cache.getOrElseUpdate(s"preview:$url", 1.second)(snippet).map { html =>
+    cache.getOrElseUpdate(s"preview:$url", config.get[Duration]("preview.cache.time"))(snippet).map { html =>
       Ok(html).withHeaders(
         "Cache-Control" -> "max-age=3600, must-revalidate",
       )
