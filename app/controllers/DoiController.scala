@@ -88,12 +88,12 @@ class DoiController @Inject()(
       case Some(pid) => doiService.getDoiMetadata(pid.value).map { doiMetadata =>
         val retStatus: Status = pid.tombstone.fold(Ok)(_ => Gone)
         render {
-          // If we're returning HTML and configured to show hidden items, do...
+          // If we're returning HTML and configured to not show hidden items, throw a 404
           case Accepts.Html() if doiMetadata.state != DoiState.Findable && !doiProfile.showHidden =>
-            retStatus(views.html.dois.show(pid, doiMetadata.asDataCiteMetadata))
-          // If we're returning HTML and NOT configured to show hidden item, throw a 404
-          case Accepts.Html() =>
             throw DoiNotFound(Messages("errors.doi.notFound"))
+          // If we're returning HTML and hidden items are visible, show the page:
+          case Accepts.Html() =>
+            retStatus(views.html.dois.show(pid, doiMetadata.asDataCiteMetadata))
           // Otherwise, show metadata...
           case _ =>
             retStatus(Doi(doiMetadata, pid.target, pid.tombstone))
