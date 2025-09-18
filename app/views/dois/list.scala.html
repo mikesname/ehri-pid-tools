@@ -16,12 +16,14 @@
                   <a href="@routes.DoiController.get(doiMetadata.prefix, doiMetadata.suffix)">
                   @dcm.title
                   </a>
-                  <span class="doi-state-container doi-state-@doiMetadata.state">
-                    <span class="doi-state-icon"></span>
-                    <span class="doi-state-text">
-                    @doiMetadata.state
+                  @if(profile.showHidden) {
+                    <span class="doi-state-container doi-state-@doiMetadata.state">
+                      <span class="doi-state-icon"></span>
+                      <span class="doi-state-text">
+                      @doiMetadata.state
+                      </span>
                     </span>
-                  </span>
+                  }
                 </h3>
               </header>
               <div class="doi-list-item-body">
