@@ -1,5 +1,7 @@
 @(pid: Pid, metadata: DataCiteMetadata, prod: Boolean = false)(implicit request: RequestHeader, messages: Messages, profile: DoiProfile, config: AppConfig)
 
+@implicitLang = @{messages.lang}
+
 @headingIfNotEmpty(headingCode: String)(html: Html) = {
   @if(!html.body.trim.isEmpty) {
     <h2>@Messages(headingCode)</h2>
@@ -218,13 +220,6 @@
         <h2>@Messages("pid.details")</h2>
       </header>
       <div class="sidebar-section-content details-grid">
-        @metadata.state.map { state =>
-          <div class="metadata-item">
-            <div class="metadata-label">@Messages("dataCite.state"):</div>
-            <div class="metadata-value">@Messages("dataCite.state." + state)</div>
-          </div>
-        }
-
         <div class="metadata-item">
           <div class="metadata-label">@Messages("dataCite.types.resourceType"):</div>
           <div class="metadata-value">
@@ -280,7 +275,7 @@
         @metadata.language.map { lang =>
           <div class="metadata-item">
             <div class="metadata-label">@Messages("dataCite.language"):</div>
-            <div class="metadata-value" property="language">@lang</div>
+            <div class="metadata-value" property="language">@_root_.utils.data.languageCodeToName(lang)</div>
           </div>
         }
 
@@ -288,6 +283,13 @@
           <div class="metadata-item">
             <div class="metadata-label">@Messages("dataCite.version"):</div>
             <div class="metadata-value" property="version">@version</div>
+          </div>
+        }
+
+        @metadata.state.map { state =>
+          <div class="metadata-item">
+            <div class="metadata-label">@Messages("dataCite.state"):</div>
+            <div class="metadata-value">@Messages("dataCite.state." + state)</div>
           </div>
         }
       </div>
