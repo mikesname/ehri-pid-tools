@@ -35,38 +35,45 @@ case class WsDoiService(profile: DoiProfile, ws: WSClient, config: Configuration
   private def doiBaseUrl: String = profile.apiBaseUrl
 
   override def listDoiMetadata(prefix: String, params: DoiListParams): Future[DoiMetadataList] = {
-    val paramMap = Map(
+    val listParams: Seq[(String, String)] = Map(
       "prefix" -> prefix,
       "query" -> params.query.getOrElse(""),
       "page[number]" -> params.page.toString,
       "page[size]" -> params.size.toString,
-      "sort" -> params.sort.getOrElse("-created")
-    )
+      "sort" -> params.sort.getOrElse("-created"),
+      "publisher" -> true.toString,
+    ).toSeq ++ apiParams
     ws.url(profile.apiBaseUrl)
       .withHttpHeaders(headers.toSeq: _*)
-      .withQueryStringParameters(paramMap.toSeq: _*).get().map { response =>
+      .withQueryStringParameters(listParams: _*).get().map { response =>
         parseResponse[DoiMetadataList](response)
       }
   }
 
   override def getDoiMetadata(doi: String): Future[DoiMetadata] = {
     ws.url(s"$doiBaseUrl/$doi")
-      .withHttpHeaders(allHeaders.toSeq: _*).get().map { response =>
-      println(s"DOI Data: ${response.body}")
+      .withQueryStringParameters(apiParams: _*)
+      .withHttpHeaders(allHeaders.toSeq: _*)
+      .get().map { response =>
         val jsonApiData = parseResponse[JsonApiData](response)
         jsonApiData.data.as[DoiMetadata]
       }
   }
 
   override def registerDoi(metadata: DoiMetadata): Future[DoiMetadata] = {
-    ws.url(doiBaseUrl).withHttpHeaders(allHeaders.toSeq: _*).post(metadata).map { response =>
+    ws.url(doiBaseUrl).withHttpHeaders(allHeaders.toSeq: _*)
+      .withQueryStringParameters(apiParams: _*)
+      .post(metadata).map { response =>
       val jsonApiData = parseResponse[JsonApiData](response, CREATED)
       jsonApiData.data.as[DoiMetadata]
     }
   }
 
   override def updateDoi(doi: String, metadata: DoiMetadata): Future[DoiMetadata] = {
-    ws.url(s"$doiBaseUrl/$doi").withHttpHeaders(allHeaders.toSeq: _*).put(metadata).map { response =>
+    ws.url(s"$doiBaseUrl/$doi")
+      .withQueryStringParameters(apiParams: _*)
+      .withHttpHeaders(allHeaders.toSeq: _*)
+      .put(metadata).map { response =>
       val jsonApiData = parseResponse[JsonApiData](response)
       jsonApiData.data.as[DoiMetadata]
     }
@@ -81,6 +88,8 @@ case class WsDoiService(profile: DoiProfile, ws: WSClient, config: Configuration
   override def generateSuffix(): String = {
     generateRandomString(DOI_ALPHABET) + "-" + generateRandomString(DOI_ALPHABET)
   }
+
+  private def apiParams: Seq[(String, String)] = Seq("publisher" -> true.toString, "affiliation" -> true.toString)
 
   private def allHeaders: Map[String, String] = headers ++ authHeaders
 
