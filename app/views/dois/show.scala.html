@@ -3,7 +3,7 @@
 @implicitLang = @{messages.lang}
 
 @headingIfNotEmpty(headingCode: String)(html: Html) = {
-  @if(!html.body.trim.isEmpty) {
+  @if(html.body.trim.nonEmpty) {
     <h2>@Messages(headingCode)</h2>
     @html
   }
@@ -11,27 +11,57 @@
 
 @relatedIdentifierSection(relatedIdentifiers: Seq[RelatedIdentifier], `type`: RelationType.Value) = {
   @defining(relatedIdentifiers.filter(item => item.relationType == `type`)) { typeIdentifiers =>
-    <div class="related-identifier-type">
+    @if(typeIdentifiers.nonEmpty) {
+      <div class="related-identifier-type">
       @if(typeIdentifiers.nonEmpty) {
-        <h4>@Messages("dataCite.relatedIdentifiers.relationType." + `type`)</h4>
+        <h4>@Messages("dataCite.relationType." + `type`)</h4>
         <ul class="related-identifier-list">
-          @for(obj <- typeIdentifiers) {
-            <li class="related-identifiers">
-              @obj.resourceTypeGeneral.map { rtg =>
-                <span class="resource-type-general">
-                  @Messages("dataCite.resourceTypeGeneral." + rtg)
-                </span>
-              }
-              @config.resolvePid(obj.relatedIdentifier, obj.relatedIdentifierType, prod).map { pidUrl =>
-                <a href="@pidUrl">@pidUrl</a> (@obj.relatedIdentifierType)
-              }.getOrElse {
-                @obj.relatedIdentifier (@obj.relatedIdentifierType)
-              }
-            </li>
-          }
+        @for(obj <- typeIdentifiers) {
+          <li class="related-identifiers">
+            @obj.resourceTypeGeneral.map { rtg =>
+              <span class="resource-type-general">
+                @Messages("dataCite.resourceTypeGeneral." + rtg)
+              </span>
+            }
+            @config.resolvePid(obj.relatedIdentifier, obj.relatedIdentifierType, prod).map { pidUrl =>
+            <a href="@pidUrl">@pidUrl</a> (@obj.relatedIdentifierType)
+            }.getOrElse {
+              @obj.relatedIdentifier (@obj.relatedIdentifierType)
+            }
+          </li>
+        }
         </ul>
       }
-    </div>
+      </div>
+    }
+  }
+}
+
+@relatedItemsSection(relatedItems: Seq[RelatedItem], `type`: RelationType.Value) = {
+  @defining(relatedItems.filter(item => item.relationType == `type`)) { typeIdentifiers =>
+    @if(typeIdentifiers.nonEmpty) {
+      <div class="related-item-type">
+      @if(typeIdentifiers.nonEmpty) {
+        <h4>@Messages("dataCite.relationType." + `type`)</h4>
+        <ul class="related-item-list">
+        @for(obj <- typeIdentifiers) {
+          <li class="related-items">
+            <span class="resource-type-general">
+            @Messages("dataCite.resourceTypeGeneral." + obj.relatedItemType)
+            </span>
+            @defining(obj.relatedItemIdentifier.map(rii => config.resolvePid(rii.relatedItemIdentifier, rii.relatedItemIdentifierType, prod))) { urlOpt =>
+              @urlOpt.map { url =>
+              <a href="@url">@obj.titles.flatMap(_.headOption.map(_.title)).getOrElse(url)</a>
+              }.getOrElse {
+                @obj
+              }
+            }
+          </li>
+        }
+        </ul>
+      }
+      </div>
+    }
   }
 }
 
@@ -204,9 +234,10 @@
         <div class="metadata-item">
           <div class="metadata-label">@Messages("dataCite.relatedIdentifiers")</div>
           <div class="metadata-value">
-            @RelationType.values.toSeq.map { relationType =>
-              @relatedIdentifierSection(metadata.relatedIdentifiers.toSeq.flatten, relationType)
-            }
+          @RelationType.values.toSeq.map { relationType =>
+            @relatedIdentifierSection(metadata.relatedIdentifiers.toSeq.flatten, relationType)
+            @relatedItemsSection(metadata.relatedItems.toSeq.flatten, relationType)
+          }
           </div>
         </div>
       }
@@ -237,8 +268,17 @@
           <div class="metadata-item">
             <div class="metadata-label">@Messages("dataCite.publisher"):</div>
             <div class="metadata-value" property="publisher" typeof="Organization">
-              <!-- TODO: scheme info and PID -->
-              <span property="name">@publisher.name</span>
+              <span property="name">
+              @publisher.publisherIdentifier.map { ident =>
+                @if(publisher.publisherIdentifierScheme.contains("ROR")) {
+                  <a href="@ident">@publisher.name</a>
+                } else {
+                  @publisher.name
+                }
+              }.getOrElse {
+                @publisher.name
+              }
+              </span>
             </div>
           </div>
         }

@@ -52,6 +52,7 @@ case class WsDoiService(profile: DoiProfile, ws: WSClient, config: Configuration
   override def getDoiMetadata(doi: String): Future[DoiMetadata] = {
     ws.url(s"$doiBaseUrl/$doi")
       .withHttpHeaders(allHeaders.toSeq: _*).get().map { response =>
+      println(s"DOI Data: ${response.body}")
         val jsonApiData = parseResponse[JsonApiData](response)
         jsonApiData.data.as[DoiMetadata]
       }
