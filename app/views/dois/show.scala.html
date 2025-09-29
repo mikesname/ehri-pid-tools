@@ -16,17 +16,17 @@
       @if(typeIdentifiers.nonEmpty) {
         <h4>@Messages("dataCite.relationType." + `type`)</h4>
         <ul class="related-identifier-list">
-        @for(obj <- typeIdentifiers) {
+        @typeIdentifiers.map { obj =>
           <li class="related-identifiers">
-            @obj.resourceTypeGeneral.map { rtg =>
-              <span class="resource-type-general">
-                @Messages("dataCite.resourceTypeGeneral." + rtg)
-              </span>
-            }
             @config.resolvePid(obj.relatedIdentifier, obj.relatedIdentifierType, prod).map { pidUrl =>
-            <a href="@pidUrl">@pidUrl</a> (@obj.relatedIdentifierType)
+              <a href="@pidUrl">@pidUrl</a> (@obj.relatedIdentifierType)
             }.getOrElse {
               @obj.relatedIdentifier (@obj.relatedIdentifierType)
+            }
+            @obj.resourceTypeGeneral.filter(_ != ResourceTypeGeneral.Other).map { rtg =>
+              <span class="resource-type-general badge">
+                @Messages("dataCite.resourceTypeGeneral." + rtg)
+              </span>
             }
           </li>
         }
@@ -44,16 +44,18 @@
       @if(typeIdentifiers.nonEmpty) {
         <h4>@Messages("dataCite.relationType." + `type`)</h4>
         <ul class="related-item-list">
-        @for(obj <- typeIdentifiers) {
+        @typeIdentifiers.map { obj =>
           <li class="related-items">
-            <span class="resource-type-general">
-            @Messages("dataCite.resourceTypeGeneral." + obj.relatedItemType)
-            </span>
             @defining(obj.relatedItemIdentifier.map(rii => config.resolvePid(rii.relatedItemIdentifier, rii.relatedItemIdentifierType, prod))) { urlOpt =>
               @urlOpt.map { url =>
-              <a href="@url">@obj.titles.flatMap(_.headOption.map(_.title)).getOrElse(url)</a>
+                <a href="@url">@obj.titles.flatMap(_.headOption.map(_.title)).getOrElse(url)</a>
               }.getOrElse {
                 @obj
+              }
+              @if(obj.relatedItemType != ResourceTypeGeneral.Other) {
+                <span class="resource-type-general">
+                  @Messages("dataCite.resourceTypeGeneral." + obj.relatedItemType)
+                </span>
               }
             }
           </li>
@@ -230,7 +232,7 @@
         </div>
       }
 
-      @if(metadata.relatedIdentifiers.exists(_.nonEmpty)) {
+      @if(metadata.relatedIdentifiers.exists(_.nonEmpty) || metadata.relatedItems.exists(_.nonEmpty)) {
         <div class="metadata-item">
           <div class="metadata-label">@Messages("dataCite.relatedIdentifiers")</div>
           <div class="metadata-value">

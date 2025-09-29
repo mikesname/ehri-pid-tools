@@ -33,13 +33,21 @@
                 </div>
                 @views.html.dois.common.creatorList(dcm.creators)
               </div>
-                <div class="doi-list-item-body-details">
-                  @doiMetadata.id.map(id => config.doiUrl(id, prod)).map { doiUrl =>
-                    <span property="identifier">
-                      <a href="@doiUrl">@doiUrl</a>
-                    </span>
-                  }
-                </div>
+              <div class="doi-list-item-body-details">
+                @doiMetadata.id.map(id => config.doiUrl(id, prod)).map { doiUrl =>
+                  <span property="identifier">
+                    <a href="@doiUrl">@doiUrl</a>
+                  </span>
+                }
+                @dcm.isPublishedIn.map { case (name, url) =>
+                  <div class="doi-list-item-publication" property="publication">
+                    <a href="@url">
+                      <i class="fa fa-globe"></i>
+                      @name
+                    </a>
+                  </div>
+                }
+              </div>
             </div>
           }
         }

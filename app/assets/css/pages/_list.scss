@@ -1,0 +1,35 @@
+
+// PID list pages
+
+.doi-list {
+  margin: 0;
+  margin-bottom: $space-lg;
+  padding: 0;
+}
+
+.doi-list-item {
+  list-style-type: none;
+  margin: 0;
+
+  border-bottom: 1px dashed var(--theme-bg-accent);
+  padding-bottom: $space-sm;
+  margin-bottom: $space-md;
+
+  .metadata-item {
+    margin-bottom: 0;
+  }
+}
+
+.doi-list-item-publication {
+  padding: $space-xs 0;
+  a {
+    padding: $space-xs;
+    border-radius: $space-xs;
+    font-size: var(--font-size-sm);
+    color: var(--black);
+    background-color: var(--grey-light);
+    &:hover {
+      background-color: darken($grey-light, 5%);
+    }
+  }
+}

@@ -39,6 +39,12 @@ case class DataCiteMetadata(
 ) {
   def title: Option[String] = titles.map(_.title).headOption
 
+  /**
+   * Obtain the name and URL for an IsPublishedIn relatedItem
+   */
+  def isPublishedIn: Option[(String, String)] =
+    relatedItems.flatMap(_.find(_.publicationUrl.isDefined).map(_.publicationUrl)).flatten
+
   def hasVersions: Boolean =
     relatedIdentifiers.toSeq.flatten.exists { relatedIdentifier =>
       relatedIdentifier.relationType == RelationType.HasVersion ||
@@ -225,7 +231,7 @@ case class RelatedIdentifier(
   relatedIdentifier: String,
   relatedIdentifierType: RelatedIdentifierType.Value,
   relationType: RelationType.Value,
-  resourceTypeGeneral: Option[String] = None,
+  resourceTypeGeneral: Option[ResourceTypeGeneral.Value] = None,
   relatedMetadataScheme: Option[String] = None,
   schemeURI: Option[String] = None,
   schemeType: Option[String] = None
@@ -334,7 +340,22 @@ case class RelatedItem(
   publisher: Option[String] = None,
   edition: Option[String] = None,
   contributors: Option[List[Contributor]] = None
-)
+) {
+  /**
+   * Helper to get a name and URL of a IsPublishedIn relatedItem
+   * @return
+   */
+  def publicationUrl: Option[(String, String)] =
+    if (relationType == RelationType.IsPublishedIn) {
+      for (name <- title; address <- url) yield name -> address
+    } else None
+
+  def title: Option[String] = titles.flatMap(_.headOption.map(_.title))
+
+  def url: Option[String] = relatedItemIdentifier
+    .filter(_.relatedItemIdentifierType == RelatedIdentifierType.URL)
+    .map(_.relatedItemIdentifier)
+}
 
 /**
  * Represents a related item identifier
